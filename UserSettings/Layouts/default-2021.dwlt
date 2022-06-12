@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 102
+  controlID: 140
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 101
+  controlID: 139
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 159
+  controlID: 19
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -590,22 +590,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Modelados/Nuevos Modelados/Nivel 1
+    - Assets/Prefabs/Nuevos Prefabs/Nivel 1
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Modelados/Nuevos Modelados/Nivel 1
+  - Assets/Prefabs/Nuevos Prefabs/Nivel 1
   m_LastFoldersGridSize: 96
   m_LastProjectPath: E:\TLS\5to Ciclo\Taller\Team\Git\Jugable
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 70700000
-    m_LastClickedID: 28784
-    m_ExpandedIDs: 00000000a66d0000f26d0000f66d0000066e00003a6f000056ba000000ca9a3b
+    m_SelectedIDs: 428d0000
+    m_LastClickedID: 36162
+    m_ExpandedIDs: 00000000387000003a7000003c7000003e700000407000006270000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -633,7 +633,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a66d0000
+    m_ExpandedIDs: 00000000387000003a7000003c7000003e70000040700000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -750,21 +750,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d6acfbffc4b0fbff4abafbff12c9fbff6ccafbff34e4fbff1ee7fbffc892fcff54f0fcff0c03fdff4a73fdffb473fdff6c77fdfffc99fdffa8b6fdff0cecffff16fbffff745f0000306400001c680000
+      m_ExpandedIDs: 0a31f5ff2e60f5ff1018f6ff961df6ff3628f6ff3a28f6ffee7ef7ffe8caf7fff0caf7ff04ddf7ffc6f5f7ffc81dfaff888dfaff1a97faffa69bfaff0ad5ffff16fbffff9c5f0000dc6900007ef80000500101000c10010094160100e03b0100343d0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: polySurface633
-        m_OriginalName: polySurface633
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -275860
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -818,9 +818,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -141, y: 149}
+      snapOffset: {x: 101, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 1
+      snapCorner: 0
       id: unity-grid-and-snap-toolbar
       index: 1
       layout: 1
@@ -862,9 +862,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 67.5, y: 86}
+      snapOffset: {x: -111, y: 26}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 0
+      snapCorner: 1
       id: Orientation
       index: 0
       layout: 4
@@ -999,9 +999,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.9495277, y: 14.268647, z: -11.295133}
+    m_Target: {x: 9.268202, y: -7.5015526, z: 34.01689}
     speed: 2
-    m_Value: {x: 4.9495277, y: 14.268647, z: -11.295133}
+    m_Value: {x: 9.268202, y: -7.5015526, z: 34.01689}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1024,15 +1024,15 @@ MonoBehaviour:
       m_Fade:
         m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
     yGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -1044,24 +1044,24 @@ MonoBehaviour:
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
-    m_ShowGrid: 1
+    m_ShowGrid: 0
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.44768804, y: 0.026821367, z: -0.013430501, w: 0.8936974}
+    m_Target: {x: 0.22821927, y: -0.035040967, z: 0.008220992, w: 0.97295845}
     speed: 2
-    m_Value: {x: 0.44770336, y: 0.025480546, z: -0.0127588315, w: 0.89372796}
+    m_Value: {x: 0.22822818, y: -0.033581026, z: 0.007878545, w: 0.9729965}
   m_Size:
-    m_Target: 1.4261415
+    m_Target: 30.691772
     speed: 2
-    m_Value: 1.4217341
+    m_Value: 1.3779006
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 0.8657009
-    m_SpeedNormalized: 0.43000045
+    m_Speed: 0.9254009
+    m_SpeedNormalized: 0.46000046
     m_SpeedMin: 0.01
     m_SpeedMax: 2
     m_EasingEnabled: 1
