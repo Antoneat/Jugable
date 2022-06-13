@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5265310870746668093}
   - component: {fileID: 5265310870746668092}
   - component: {fileID: 5265310870746668091}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pasted__polySurface18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,9 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5265310871593611788}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pared
-  m_TagString: Untagged
+  m_TagString: Piso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 6454838574056865676}
   - component: {fileID: 7793352668620761738}
   - component: {fileID: 8510780576910480647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

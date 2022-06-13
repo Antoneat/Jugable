@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8882764216326719757}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6383261411070217780}
   - component: {fileID: 6383261411070217770}
   - component: {fileID: 6383261411070217781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Limite Suelo-Pared
   m_TagString: Piso
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3935168595097016741}
   - component: {fileID: 7549674560470664065}
   - component: {fileID: 1752330502394068752}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

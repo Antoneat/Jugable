@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8281883011746112520}
   - component: {fileID: 1712324453441464613}
   - component: {fileID: 2897713447647417965}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface699
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 4931322275894137445}
   - component: {fileID: 6843583543849966210}
   - component: {fileID: 5885756724231962596}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Piso 4
-  m_TagString: Untagged
+  m_TagString: Piso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

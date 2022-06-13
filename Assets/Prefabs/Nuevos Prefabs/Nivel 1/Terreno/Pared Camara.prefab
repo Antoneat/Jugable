@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3222228542451176333}
   - component: {fileID: 1802594631938147979}
   - component: {fileID: 234129343801178374}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,9 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4337444613517106701}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pared Camara
-  m_TagString: Untagged
+  m_TagString: Piso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4337444614799831100}
   - component: {fileID: 4337444614799831101}
   - component: {fileID: 4337444614799831098}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pasted__polySurface18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
