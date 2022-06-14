@@ -143,10 +143,10 @@ TextureImporter:
       name: Scarlet run test-Sheet_0
       rect:
         serializedVersion: 2
-        x: 124
-        y: 135
-        width: 153
-        height: 168
+        x: 0
+        y: 0
+        width: 360
+        height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +164,10 @@ TextureImporter:
       name: Scarlet run test-Sheet_1
       rect:
         serializedVersion: 2
-        x: 482
-        y: 135
-        width: 150
-        height: 170
+        x: 360
+        y: 0
+        width: 360
+        height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,10 +185,10 @@ TextureImporter:
       name: Scarlet run test-Sheet_2
       rect:
         serializedVersion: 2
-        x: 837
-        y: 135
-        width: 162
-        height: 170
+        x: 720
+        y: 0
+        width: 360
+        height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: Scarlet run test-Sheet_3
       rect:
         serializedVersion: 2
-        x: 1198
-        y: 135
-        width: 157
-        height: 170
+        x: 1080
+        y: 0
+        width: 360
+        height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
