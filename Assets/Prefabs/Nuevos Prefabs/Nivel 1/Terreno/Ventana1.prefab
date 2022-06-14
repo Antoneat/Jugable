@@ -43,7 +43,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0, g: 1, b: 0.90196085, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.6745098, a: 1}
   m_Intensity: 14.96
   m_Range: 3.4783177
   m_SpotAngle: 30
@@ -220,7 +220,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0, g: 1, b: 0.90196085, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.6745098, a: 1}
   m_Intensity: 14.96
   m_Range: 3.4783177
   m_SpotAngle: 30
@@ -314,7 +314,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0, g: 1, b: 0.95107245, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.6745098, a: 1}
   m_Intensity: 9.75
   m_Range: 3.5000014
   m_SpotAngle: 131.88678
@@ -352,7 +352,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 193
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -427,7 +427,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 28c997222862b94438222d64601ecd59, type: 2}
-  - {fileID: 2100000, guid: d3e3dcb9dafb8f14e9b6cee124938248, type: 2}
+  - {fileID: 2100000, guid: 49f2e07e486698e4cb73ad4323809e10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -492,7 +492,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0, g: 1, b: 0.95107245, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.6745098, a: 1}
   m_Intensity: 9.75
   m_Range: 3.5000014
   m_SpotAngle: 131.88678
@@ -530,7 +530,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 193
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0

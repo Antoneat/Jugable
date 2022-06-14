@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3379132484497372812}
   - component: {fileID: 3379132484497372811}
   m_Layer: 6
-  m_Name: Piso 2
+  m_Name: Piso 2 a
   m_TagString: Piso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3379132484497372808}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -0.073, z: 0}
+  m_LocalPosition: {x: 2, y: 0.15, z: 0}
   m_LocalScale: {x: 2, y: 0.01, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3379132484785367597}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000058114523}
-  m_LocalPosition: {x: -0.516, y: 0.5644534, z: -0.506}
+  m_LocalPosition: {x: -0.516, y: -2.027, z: -0.506}
   m_LocalScale: {x: 0.67, y: 134, z: 0.67}
   m_ConstrainProportionsScale: 1
   m_Children: []
