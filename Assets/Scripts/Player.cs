@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Transform playerTransform;
     public Rigidbody rb;
     public SpriteRenderer spriteRenderer; //Giro del sprite
+    public LayerMask suelo;
 
     [Header("Vida")]
     public float actualvida;
@@ -70,6 +71,10 @@ public class Player : MonoBehaviour
     int b = 0;
     public StateManager SM;
     public bool closeToStair;
+    public bool dashMejorado;
+    public bool basicoMejorado;
+    public bool cargadoRojo;
+    public bool cargadoAzul;
 
     [Header("VFX")]
     public GameObject ataqueUno;
@@ -95,7 +100,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         actualvida = maxVida;
-        almas = 0;
+        //almas = 0;
         blck = false;
         bloqueoDuracion = bloqueoMaxDuracion;
 
@@ -116,11 +121,13 @@ public class Player : MonoBehaviour
         invocacionesEnemigos();
         Blocking();
 
+        //Caida();
+
         vidapersonajeTxt.text = "Vida: " + actualvida.ToString();
 
         dmgTxt.text = "Daño: " + AttackDmgUno.ToString();
 
-        almasText.text = "Almas: " + almas.ToString();
+        //almasText.text = "Almas: " + almas.ToString();
 
         collecTxt.text = counterCollectables.ToString() + " / 5";
 
@@ -245,7 +252,7 @@ public class Player : MonoBehaviour
 
         if (dash == false) 
         {
-            rb.velocity = new Vector3(horizontal * speed * Time.fixedDeltaTime, 0, vertical * speed * Time.fixedDeltaTime);
+            rb.velocity = new Vector3(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y, vertical * speed * Time.fixedDeltaTime);
             playerTransform.rotation = Quaternion.LookRotation(movement);
             //movement = new Vector3(0, 0, 0);
         }
@@ -272,11 +279,32 @@ public class Player : MonoBehaviour
             movement.z = -1;
         }
 
-        if (movement.x < 0) //Giro del sprite cuando mueve DERECHA o IZQUIERDA 
+        if (horizontal > 0 && vertical > 0)
+        {
+            movement.x = 1;
+            movement.z = 1;
+        }
+        else if (horizontal < 0 && vertical < 0)
+        {
+            movement.x = -1;
+            movement.z = -1;
+        }
+        else if (horizontal > 0 && vertical < 0)
+        {
+            movement.x = 1;
+            movement.z = -1;
+        }
+        else if (horizontal < 0 && vertical > 0)
+        {
+            movement.x = -1;
+            movement.z = 1;
+        }
+
+        if (rb.velocity.x < 0) //Giro del sprite cuando mueve DERECHA o IZQUIERDA 
         {
             spriteRenderer.flipX = false;
         }
-        else if (movement.x > 0)
+        else if (rb.velocity.x > 0)
         {
             spriteRenderer.flipX = true;
         }
@@ -310,7 +338,28 @@ public class Player : MonoBehaviour
             ataqueCargGO.transform.position = transform.position + new Vector3(0, 0, -2);
         }*/
     }
-    
+
+    //public void Caida()
+    //{
+    //    RaycastHit hit;
+
+    //    if (Physics.Raycast(transform.position, -transform.up, out hit, 1f, suelo))
+    //    {
+    //        if (hit.collider.CompareTag("Piso"))
+    //        {
+    //            Debug.Log("Tocando suelo");
+    //        }
+
+    //        if (!hit.collider.CompareTag("Piso"))
+    //        {
+    //            rb.AddForce(Vector3.down * 3f, ForceMode.Impulse);
+    //            //rb.velocity.y = multiplicar su velocidad en Y;
+    //            Debug.Log("cayendo");
+    //        }
+    //        Debug.DrawRay(transform.position, -transform.up * 1f, Color.red);
+    //    }
+    //}
+
     IEnumerator Dash()
     {
         if(movement.z > 0)
@@ -347,8 +396,9 @@ public class Player : MonoBehaviour
             rb.AddForce(new Vector3(-1, 0, -1) * speedDash, ForceMode.Impulse);
         }
 
-        //movement = new Vector3(0, 0, 0);
         yield return new WaitForSecondsRealtime(0.3f);
+        movement = new Vector3(0, 0, 0);
+        yield break;
     }
     
     private void AttackCombo()
@@ -421,6 +471,7 @@ public class Player : MonoBehaviour
             ataqueCargGO.SetActive(false);
         }
         attackCharged = false;
+        yield break;
     }
 
     private void Blocking()
