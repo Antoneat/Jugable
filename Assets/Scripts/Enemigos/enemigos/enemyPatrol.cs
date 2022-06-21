@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemyPatrol : MonoBehaviour
 {
 
-	public float Speed;
+	//public float Speed;
 	//public float damping = 6.0f;
 
 	public UnityEngine.AI.NavMeshAgent agent;
@@ -22,11 +22,11 @@ public class enemyPatrol : MonoBehaviour
 	{
 		UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		
-
-		agent.autoBraking = false;
-
+		//agent.autoBraking = false;
 
 		goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+		agent.SetDestination(goal.position);
 	}
 
 	void Update()
@@ -38,21 +38,25 @@ public class enemyPatrol : MonoBehaviour
 			LookAtPlayer();
 			Debug.Log("Seen");
 			Chase();
+			agent.isStopped = false;
 		}
 		else if (playerDistance > awareAI)
 		{
 			LookAtPlayer();
-			agent.speed = 0;
+			agent.isStopped = true;
 		}
 
 
 		if (playerDistance <= atkRange)
 		{
+
 			ee.ChooseAtk();
+			agent.isStopped = false;
 		}
 		else if (playerDistance > atkRange )
 		{
 			LookAtPlayer();
+			agent.isStopped = false;
 		}
 	}
 
@@ -65,10 +69,21 @@ public class enemyPatrol : MonoBehaviour
 
 	public void Chase()
 	{
-		
-		transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-		//agent.SetDestination(goal.transform.position);
-		agent.destination = goal.position;
+		agent.stoppingDistance = 3;
+		agent.SetDestination(goal.position);
+
+		//transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+
+		if (agent.remainingDistance > agent.stoppingDistance)
+        {
+			agent.isStopped = false;
+
+		}
+		else if (agent.remainingDistance < agent.stoppingDistance)
+        {
+			agent.isStopped = true; 
+        }
+
 	}
 
 

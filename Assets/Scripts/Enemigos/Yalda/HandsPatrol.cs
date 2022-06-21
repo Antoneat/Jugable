@@ -6,13 +6,13 @@ public class HandsPatrol : MonoBehaviour
 {
 
 	public Transform player;
-	public float Speed;
+
 	public Transform teleport;
 	public Transform teleport2;
 	public Transform teleport3;
 	public Transform teleport4;
-	//public float playerDistance;
-	//public float awareAI = 20f;
+
+
 	//public float damping = 6.0f;
 
 
@@ -27,24 +27,22 @@ public class HandsPatrol : MonoBehaviour
 	public Hands h;
 
 	public Player plyr;
+
 	void Start()
 	{
 		UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+		
 
-
-		agent.autoBraking = false;
+		//agent.autoBraking = false;
 	}
 
 	void Update()
 	{
+		
 
-		LookAtPlayer();
 	}
 
-	void LookAtPlayer()
-	{
-		transform.LookAt(player);
-	}
+
 
 
 	public void GotoNextPoint1()

@@ -26,13 +26,9 @@ public class Enemy : MonoBehaviour
     [Header("Extra")]
     [SerializeField] private float knockbackStrength;
 
-    // [Header("Following")]
-    //public float speed;
-    //public Transform ObjetoASeguir;
-    //public bool playerOnRange;
+    public bool coPlay; 
 
-    //[Header("RangoDeAtaque")]
-    //public GameObject rangoAtaque;
+
 
     void Start()
     {
@@ -44,28 +40,14 @@ public class Enemy : MonoBehaviour
 
         atkBTxt.SetActive(false);
         mordiscoTxt.SetActive(false);
+
+        coPlay = false;
     }
 
     void Update()
     {
-        //Following();
         Muerte();
     }
-
-    /*private void Following()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, ObjetoASeguir.transform.position, speed * Time.deltaTime);
-        transform.forward = ObjetoASeguir.position - transform.position;
-        if(playerOnRange == true)
-        {
-            speed = 0f;
-            ChooseAtk();
-        }
-        else if (playerOnRange == false)
-        {
-            speed = 1f;
-        }
-    }*/
 
     private void Muerte()
     {
@@ -73,6 +55,7 @@ public class Enemy : MonoBehaviour
         {
             plyr.actualvida += 10;
             plyr.almas += 10;
+            plyr.enemigosDerrotados++;
             dead = true;
             Destroy(gameObject);
         }
@@ -80,52 +63,49 @@ public class Enemy : MonoBehaviour
 
     public void ChooseAtk()
     {
-        if (SM.ps == PlayerState.Normal || SM.ps == PlayerState.Stun || SM.ps == PlayerState.Sangrado)
+        if (SM.ps == PlayerState.Normal && coPlay == false || SM.ps == PlayerState.Stun && coPlay == false || SM.ps == PlayerState.Sangrado && coPlay == false)
         {
             StartCoroutine(AtaqueBasico());
         }
-        else if (SM.ps == PlayerState.Quemado)
+        else if (SM.ps == PlayerState.Quemado && coPlay == false)
         {
             StartCoroutine(Mordisco());
         }
         
     }
 
-  /*  public void activator()
-    {
-        switch(Random.Range(0,2))
-        {
-            case 0: StartCoroutine(AtaqueBasico());
-                break;
-            case 1: StartCoroutine(Mordisco());
-                break;
-        }
-    }*/
+
 
     IEnumerator AtaqueBasico()
     {
-        eP.agent.speed = 0;
+        coPlay = true;
+        eP.agent.isStopped = true;
         yield return new WaitForSecondsRealtime(1f);
-        eP.agent.speed = 3;
+        eP.agent.isStopped = false;
         basicoGO.SetActive(true);
         atkBTxt.SetActive(true);
         yield return new WaitForSecondsRealtime(2f);
         basicoGO.SetActive(false);
         atkBTxt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
         yield break;
     }
 
     IEnumerator Mordisco()
     {
-        eP.agent.speed = 0;
+        coPlay = true;
+        eP.agent.isStopped = true;
         yield return new WaitForSecondsRealtime(1.5f);
-        eP.agent.speed = 3;
+        eP.agent.isStopped = false;
         mordiscoGO.SetActive(true);
         mordiscoTxt.SetActive(true);
         //SM.ps = PlayerState.Sangrado;
         yield return new WaitForSecondsRealtime(2f);
         mordiscoGO.SetActive(false);
         mordiscoTxt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
         yield break;
     }
 

@@ -29,16 +29,25 @@ public class Hands : MonoBehaviour
     public Transform pointc;
     public Transform pointd;
 
-    public GameObject itemSp;
+    public GameObject onda;
+    public bool isCreated;
+    public bool isDestroyed;
 
     public bool vulnerable;
     bool loop;
+
+    public bool coPlay;
+    
     void Start()
     {
-        itemSp.SetActive(false);
+       
         actualvida = maxVida;
         vulnerable = false;
         loop = true;
+        isCreated=false;
+        coPlay = false; 
+        //isDestroyed=false;
+
         portalA.SetActive(false);
         portalB.SetActive(false);
         portalC.SetActive(false);
@@ -79,80 +88,204 @@ public class Hands : MonoBehaviour
     {
         while (loop ==true)
         {
-            yield return StartCoroutine(Ataquebasico1());
+            if(coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico1());
+
+            }
+            
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Ataquebasico2());
+            
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico2());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Especial());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Especial());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Ataquebasico3());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico3());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Ataquebasico4());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico4());
+            }
+           
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Ataquebasico2());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico2());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Especial());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Especial());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Ataquebasico1());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico1());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Ataquebasico3());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico3());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Ataquebasico5());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico5());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Especial());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Especial());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
-            yield return StartCoroutine(Ataquebasico6());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico6());
+            }
+
             yield return new WaitForSecondsRealtime(0.7f);
         }
-        yield return null;
+        yield  break;
     }
     private IEnumerator Seq2()
     {
         while (loop == true)
         {
-            yield return StartCoroutine(Ataquebasico1());
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico1());
+
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Ataquebasico2());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico2());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Especial());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Especial());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Ataquebasico3());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico3());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Ataquebasico4());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico4());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Ataquebasico2());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico2());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Especial());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Especial());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Ataquebasico1());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico1());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Ataquebasico3());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico3());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Ataquebasico5());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico5());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Especial());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Especial());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
-            yield return StartCoroutine(Ataquebasico6());
+
+            if (coPlay == false)
+            {
+                yield return StartCoroutine(Ataquebasico6());
+            }
+
             yield return new WaitForSecondsRealtime(1.7f);
         }
-        yield return null;
+        yield break;
     }
 
 
     IEnumerator Ataquebasico1()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(2.5f);
-            hp.GotoNextPoint1();
-            yield return new WaitForSecondsRealtime(4f);
-            hp.GotoNextPoint2();
+        hp.GotoNextPoint1();
+        yield return new WaitForSecondsRealtime(4f);
+        hp.GotoNextPoint2();
         vulnerable = true;
         yield return new WaitForSecondsRealtime(4f);
         vulnerable = false;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
 
     IEnumerator Ataquebasico2()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(2.5f);
             hp2.GotoNextPoint1();
             yield return new WaitForSecondsRealtime(1f);
@@ -160,56 +293,68 @@ public class Hands : MonoBehaviour
         vulnerable = true;
         yield return new WaitForSecondsRealtime(4f);
         vulnerable = false;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
 
     IEnumerator Ataquebasico3()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(2.5f);
-            hp2.GotoNextPoint3();
-            yield return new WaitForSecondsRealtime(1f);
-            hp2.GotoNextPoint4();
+        hp2.GotoNextPoint3();
+        yield return new WaitForSecondsRealtime(1f);
+        hp2.GotoNextPoint4();
         vulnerable = true;
         yield return new WaitForSecondsRealtime(4f);
         vulnerable = false;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
 
     IEnumerator Ataquebasico4()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(2.5f);
-
-            hp.GotoNextPoint1();
-            yield return new WaitForSecondsRealtime(1f);
-            hp.GotoNextPoint2();
+        hp.GotoNextPoint1();
+        yield return new WaitForSecondsRealtime(1f);
+        hp.GotoNextPoint2();
         vulnerable = true;
         yield return new WaitForSecondsRealtime(4f);
         vulnerable = false;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
 
     IEnumerator Ataquebasico5()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(2.5f);
-            hp.GotoNextPoint2();
-            yield return new WaitForSecondsRealtime(1f);
-            hp.GotoNextPoint1();
+        hp.GotoNextPoint2();
+        yield return new WaitForSecondsRealtime(1f);
+        hp.GotoNextPoint1();
         vulnerable = true;
         yield return new WaitForSecondsRealtime(4f);
         vulnerable = false;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
 
     IEnumerator Ataquebasico6()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(2.5f);
-       
-            hp.GotoNextPoint4();
-            yield return new WaitForSecondsRealtime(1f);
-            hp.GotoNextPoint3();
+        hp.GotoNextPoint4();
+        yield return new WaitForSecondsRealtime(1f);
+        hp.GotoNextPoint3();
         vulnerable = true;
         yield return new WaitForSecondsRealtime(4f);
         vulnerable = false;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
 
@@ -217,16 +362,22 @@ public class Hands : MonoBehaviour
 
     IEnumerator Especial()
     {
+        coPlay = true;
         GotoPointA();
         yield return new WaitForSecondsRealtime(0.5f);
         GotoPointB();
         yield return new WaitForSecondsRealtime(0.5f);
-        itemSp.SetActive(true);
+        OndaExpansiva();
         yield return new WaitForSecondsRealtime(2f);
-        itemSp.SetActive(false);
         vulnerable = true;
+        hp.agent.isStopped = true;
+        hp2.agent.isStopped = true;
         yield return new WaitForSecondsRealtime(5f);
+        hp.agent.isStopped = false;
+        hp2.agent.isStopped = false;
         vulnerable = false;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
 
@@ -243,27 +394,19 @@ public class Hands : MonoBehaviour
         hp2.agent.destination = pointd.position;
     }
 
-   /* void OndaExpansiva()
+    void OndaExpansiva()
     {
-        Vector3 pos = new Vector3(-1,1,0);
-        Instantiate(itemSp, pos, Quaternion.identity);
-        itemSp.SetActive(true);
-    }*/
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (vulnerable ==true)
+       
+        if (isCreated==false)
         {
-            if (collider.gameObject.CompareTag("AtaqueUno")) actualvida -= plyr.AttackDmgUno; // Baja la vida del enemigo acorde con el valor que se puso en el ataque.
-
-            if (collider.gameObject.CompareTag("AtaqueDos")) actualvida -= plyr.AttackDmgDos; // Lo de arriba x2.
-
-            if (collider.gameObject.CompareTag("AtaqueTres")) actualvida -= plyr.AttackDmgTres; // Lo de arriba x3.
-
-            if (collider.gameObject.CompareTag("AtaqueCargado")) actualvida -= plyr.AttackDmgCargado; // Lo de arriba x4.
+          Vector3 pos = new Vector3(-1,1,0);
+          Instantiate(onda, pos, Quaternion.identity);
+          Destroy(GameObject.Find("onda(Clone)"),2);
+          isCreated = true;
         }
-
     }
+
+
 
 
 }

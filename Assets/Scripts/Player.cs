@@ -91,14 +91,15 @@ public class Player : MonoBehaviour
     [Header("Enemigos")]
     [SerializeField] private GameObject BuscadorPrefab;
     [SerializeField] private GameObject VerdugoPrefab;
-    //[SerializeField] private GameObject YaldaPrefab;
+    [SerializeField] private GameObject YaldaPrefab;
+    public int enemigosDerrotados;
     //[SerializeField] private GameObject SamaelPrefab;
 
   
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        enemigosDerrotados = 0;
         actualvida = maxVida;
         //almas = 0;
         blck = false;
@@ -127,7 +128,7 @@ public class Player : MonoBehaviour
 
         dmgTxt.text = "Daño: " + AttackDmgUno.ToString();
 
-        //almasText.text = "Almas: " + almas.ToString();
+       // almasText.text = "Almas: " + almas.ToString();
 
         collecTxt.text = counterCollectables.ToString() + " / 5";
 
@@ -279,7 +280,7 @@ public class Player : MonoBehaviour
             movement.z = -1;
         }
 
-        if (horizontal > 0 && vertical > 0)
+        if(horizontal > 0 && vertical > 0)
         {
             movement.x = 1;
             movement.z = 1;
@@ -308,49 +309,24 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-        /*
-        if(horizontal > 0)
-        {
-            ataqueUnoGO.transform.position = transform.position + new Vector3(2, 0, 0);
-            ataqueDosGO.transform.position = transform.position + new Vector3(2, 0, 0);
-            ataqueTresGO.transform.position = transform.position + new Vector3(2, 0, 0);
-            ataqueCargGO.transform.position = transform.position + new Vector3(2, 0, 0);
-        }
-        else if(horizontal < 0)
-        {
-            ataqueUnoGO.transform.position = transform.position + new Vector3(-2, 0, 0);
-            ataqueDosGO.transform.position = transform.position + new Vector3(-2, 0, 0);
-            ataqueTresGO.transform.position = transform.position + new Vector3(-2, 0, 0);
-            ataqueCargGO.transform.position = transform.position + new Vector3(-2, 0, 0);
-        }
-        else if(vertical > 0)
-        {
-            ataqueUnoGO.transform.position = transform.position + new Vector3(0, 0, 2);
-            ataqueDosGO.transform.position = transform.position + new Vector3(0, 0, 2);
-            ataqueTresGO.transform.position = transform.position + new Vector3(0, 0, 2);
-            ataqueCargGO.transform.position = transform.position + new Vector3(0, 0, 2);
-        }
-        else if (vertical < 0)
-        {
-            ataqueUnoGO.transform.position = transform.position + new Vector3(0, 0, -2);
-            ataqueDosGO.transform.position = transform.position + new Vector3(0, 0, -2);
-            ataqueTresGO.transform.position = transform.position + new Vector3(0, 0, -2);
-            ataqueCargGO.transform.position = transform.position + new Vector3(0, 0, -2);
-        }*/
+
+
+
+
     }
 
     //public void Caida()
     //{
     //    RaycastHit hit;
 
-    //    if (Physics.Raycast(transform.position, -transform.up, out hit, 1f, suelo))
+    //    if (Physics.Raycast(transform.position, -transform.up, out hit, 1f))
     //    {
-    //        if (hit.collider.CompareTag("Piso"))
+    //        if (hit.collider.gameObject.name == "Suelo")
     //        {
     //            Debug.Log("Tocando suelo");
     //        }
 
-    //        if (!hit.collider.CompareTag("Piso"))
+    //        if (hit.collider.gameObject.name != "Suelo")
     //        {
     //            rb.AddForce(Vector3.down * 3f, ForceMode.Impulse);
     //            //rb.velocity.y = multiplicar su velocidad en Y;
@@ -359,7 +335,7 @@ public class Player : MonoBehaviour
     //        Debug.DrawRay(transform.position, -transform.up * 1f, Color.red);
     //    }
     //}
-
+    
     IEnumerator Dash()
     {
         if(movement.z > 0)
@@ -534,6 +510,14 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         // if (collider.gameObject.CompareTag("RangoAtaqueEnemy1")) enmy.playerOnRange = true;
+        
+
+        if (collider.gameObject.CompareTag("manos"))
+        {
+
+            actualvida -= 4;
+
+        }
 
         if (collider.gameObject.CompareTag("AtaqueNormalEnemy1"))
         {
@@ -712,6 +696,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             Instantiate(VerdugoPrefab, transform.position + new Vector3(2,0,0), Quaternion.identity);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Instantiate(YaldaPrefab, transform.position + new Vector3(2, 3, 0), Quaternion.identity);
         }
     }
 

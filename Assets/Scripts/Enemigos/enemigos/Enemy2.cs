@@ -35,6 +35,8 @@ public class Enemy2 : MonoBehaviour
     [SerializeField] private float knockbackStrength;
     public Vector3 playerpos;
 
+    public bool coPlay;
+
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -47,7 +49,9 @@ public class Enemy2 : MonoBehaviour
 
         atkBTxt.SetActive(false);
         golpeTxt.SetActive(false);
-        rafagaTxt.SetActive(false);    
+        rafagaTxt.SetActive(false);
+
+        coPlay = false;
     }
 
     void Update()
@@ -63,6 +67,7 @@ public class Enemy2 : MonoBehaviour
         {
             plyr.actualvida += 10;
             plyr.almas += 10;
+            plyr.enemigosDerrotados++;
             dead = true;
             Destroy(gameObject);
         }
@@ -70,15 +75,15 @@ public class Enemy2 : MonoBehaviour
 
     public void ChooseAtk2()
     {
-        if (SM.ps == PlayerState.Normal || SM.ps == PlayerState.Sangrado || SM.ps == PlayerState.Quemado)
+        if (coPlay == false && SM.ps == PlayerState.Normal && eP2.playerDistance < eP2.atkRange || coPlay == false &&  SM.ps == PlayerState.Sangrado && eP2.playerDistance < eP2.atkRange || coPlay == false &&  SM.ps == PlayerState.Quemado && eP2.playerDistance < eP2.atkRange)
         {
             StartCoroutine(AtaqueBasico());
         }
-        else if (SM.ps == PlayerState.Stun)
+        else if (coPlay == false && SM.ps == PlayerState.Stun && eP2.playerDistance < eP2.atkRange)
         {
             StartCoroutine(GolpeAlPiso());
         }
-        else if (eP2.playerDistance > eP2.atkRange && eP2.playerDistance < eP2.awareAI)
+        else if (coPlay == false && eP2.playerDistance > eP2.atkRange && eP2.playerDistance < eP2.awareAI)
         {
             StartCoroutine(Rafaga());
         }
@@ -87,46 +92,56 @@ public class Enemy2 : MonoBehaviour
 
     IEnumerator AtaqueBasico()
     {
-        eP2.agent.speed = 0;
+        coPlay = true;
+        eP2.agent.isStopped = true;
         yield return new WaitForSecondsRealtime(1.5f);
-        eP2.agent.speed = 3;
+        eP2.agent.isStopped = false;
         atkbasGO.SetActive(true);
         atkBTxt.SetActive(true);
         yield return new WaitForSecondsRealtime(4f);
         atkbasGO.SetActive(false);
         atkBTxt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
         yield break;
     }
 
     IEnumerator GolpeAlPiso()
     {
-       
+        coPlay = true;
+        eP2.agent.isStopped = true;
         //wea q lo sigue 
         yield return new WaitForSecondsRealtime(3f);
         //GameObject clone = Instantiate(golpeGO, playerpos, Quaternion.identity);
         golpeGO.transform.position = playerpos;
         golpeGO.SetActive(true);
         golpeTxt.SetActive(true);
-       // SM.ps = PlayerState.Quemado;
+        // SM.ps = PlayerState.Quemado;
+        eP2.agent.isStopped = false;
         yield return new WaitForSecondsRealtime(1f);
         golpeGO.SetActive(false);
         golpeTxt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
         yield break;
     }
 
     IEnumerator Rafaga()
     {
-        eP2.agent.speed = 0;
+        coPlay = true;
+        eP2.agent.isStopped = true;
         yield return new WaitForSecondsRealtime(1f);
         rafagaGO.SetActive(true);
         rafagaTxt.SetActive(true);
         float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
         rafagaGO.transform.position = Vector3.MoveTowards(transform.position, playerpos, step);
         //SM.ps = PlayerState.Quemado;
-        eP2.agent.speed = 3;
+        eP2.agent.isStopped = false;
         yield return new WaitForSecondsRealtime(2f);
         rafagaGO.SetActive(false);
         rafagaTxt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
         yield break;
     }
 

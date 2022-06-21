@@ -55,7 +55,6 @@ public class StateManager : MonoBehaviour
 
     IEnumerator OnFire()
     {
-       
         dmgTick = 2;
         timeXTick = 2;
         totalTicks = 4;
@@ -73,6 +72,7 @@ public class StateManager : MonoBehaviour
             yield break;
 
         }
+        yield break;
     }
 
     IEnumerator Sangrando()
@@ -94,7 +94,8 @@ public class StateManager : MonoBehaviour
             yield break;
             
         }
-      
+        yield break;
+
     }
 
     IEnumerator Stuneado()

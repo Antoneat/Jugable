@@ -34,7 +34,7 @@ public class Yaldabaoth : MonoBehaviour
      public GameObject goC;
     */
     public YaldaPatrol yp;
-
+    public bool coPlay;
 
     void Start()
     {
@@ -48,6 +48,8 @@ public class Yaldabaoth : MonoBehaviour
         especialTxt.SetActive(false);
 
         actualvida = maxVida;
+
+        coPlay=false;
     }
 
     void Update()
@@ -55,43 +57,19 @@ public class Yaldabaoth : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
 
-        
-    }
-
-    /* private void Following()
-     {
-         if (atacando == false)
-         {
-             transform.position = Vector3.MoveTowards(transform.position, playerSeguir.transform.position, speed * Time.deltaTime);
-             transform.forward = playerSeguir.position - transform.position;
-             transform.rotation = Quaternion.Slerp(transform.rotation, playerSeguir.rotation, smoothRot * Time.deltaTime);
-         }
-         else if(atacando == true)
-         {
-             speed = 0;
-             Ataques();
-         }
-         /*
-         if (playerOnRange == true)
-         {
-             atacando = true;
-         }
-     }*/
 
     public void ChooseAtk3()
     {
-        if ((yp.playerDistance < yp.atkRange))
+        if (actualvida > 20 && yp.playerDistance < yp.atkRange && coPlay == false)
         {
             StartCoroutine(ataqueBasico());
         }
-        else if (yp.playerDistance > yp.atkRange && yp.playerDistance < yp.awareAI)
+        else if (actualvida > 20 && yp.playerDistance > yp.atkRange && yp.playerDistance < yp.awareAI && coPlay == false)
         {
             StartCoroutine(especial());
         }
-        else if (actualvida <= 20)
+        else if (actualvida <= 20 && coPlay == false)
         {
             StartCoroutine(ataqueFinal());
         }
@@ -100,6 +78,7 @@ public class Yaldabaoth : MonoBehaviour
 
     IEnumerator ataqueBasico()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(0.5f);
         basico1GO.SetActive(true);
         basico1Txt.SetActive(true);
@@ -113,10 +92,13 @@ public class Yaldabaoth : MonoBehaviour
         yp.agent.speed = 3;
         basico3GO.SetActive(false);
         basico3Txt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
         yield break;
     }
     IEnumerator especial()
     {
+        coPlay = true;
         especialTxt.SetActive(true);
         yp.agent.speed = 0;
         yield return new WaitForSecondsRealtime(3f);
@@ -125,10 +107,14 @@ public class Yaldabaoth : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(3f);
         especialTxt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
+        yield break;
     }
 
     IEnumerator ataqueFinal()
     {
+        coPlay = true;
         // Varios dash con patron y cuando termine, generar un triangulo en el suelo que haga daño al player y se quede quieto por 3s.
         yield break;
     }

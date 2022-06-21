@@ -11,11 +11,14 @@ public class FaseManager : MonoBehaviour
 
     public Player plyr;
 
+    public bool coPlay; 
+
     void Start()
     {
         Yaldabaoth.SetActive(false);
         Hands.SetActive(true);
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        coPlay = false;
     }
 
   
@@ -50,14 +53,20 @@ public class FaseManager : MonoBehaviour
 
     IEnumerator HandsRegen()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(80f);
         h.actualvida = h.maxVida;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
     IEnumerator YaldaRegen()
     {
+        coPlay = true;
         yield return new WaitForSecondsRealtime(160f);
         y.actualvida = y.maxVida;
+        yield return new WaitForSecondsRealtime(0.5f);
+        coPlay = false;
         yield break;
     }
 }
