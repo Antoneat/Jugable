@@ -9991,7 +9991,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.94, y: 1.5067825, z: 1.2}
-  m_Center: {x: 0, y: 0.108391285, z: -0.029999971}
+  m_Center: {x: 0, y: 0.108391285, z: 0.26}
 --- !u!54 &6996329270984734764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10026,6 +10026,9 @@ MonoBehaviour:
   playerTransform: {fileID: 6996329270984734760}
   rb: {fileID: 6996329270984734764}
   spriteRenderer: {fileID: 6996329269733243140}
+  suelo:
+    serializedVersion: 2
+    m_Bits: 0
   actualvida: 0
   dash: 0
   speedDash: 100
@@ -10063,6 +10066,10 @@ MonoBehaviour:
   dmgTxt: {fileID: 0}
   SM: {fileID: 6996329270984734933}
   closeToStair: 0
+  dashMejorado: 0
+  basicoMejorado: 0
+  cargadoRojo: 0
+  cargadoAzul: 0
   ataqueUno: {fileID: 6996329271204846245}
   ataqueDos: {fileID: 6996329270220922002}
   ataqueTres: {fileID: 6996329269453992263}
@@ -10073,6 +10080,8 @@ MonoBehaviour:
   counterNum: 0
   BuscadorPrefab: {fileID: 0}
   VerdugoPrefab: {fileID: 0}
+  YaldaPrefab: {fileID: 0}
+  enemigosDerrotados: 0
 --- !u!114 &6996329270984734933
 MonoBehaviour:
   m_ObjectHideFlags: 0
