@@ -8,9 +8,11 @@ public class MainMenuController : MonoBehaviour
 
     public GameObject optionsMainMenu, salaTrofeosInterfaz;
 
-    public GameObject menuFirstButton, optionsFirstButtonMainMenu, optionsCloseButton, salaTrofeosFirstButton;
+    public GameObject menuFirstButton, optionsFirstButtonMainMenu, optionsCloseButton, salaTrofeosFirstButton, closeButtonInfo;
 
     public CamMovimientoMenu movimientoMenu;
+
+    public GameObject[] trofeosInfo;
 
     void Start()
     {
@@ -60,6 +62,34 @@ public class MainMenuController : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         //Set a new selected object
         EventSystem.current.SetSelectedGameObject(menuFirstButton);
+    }
+
+    //ver a los trofeos views 8 - 12
+
+    public void OpenCuchillo()
+    {
+        movimientoMenu.currentView = movimientoMenu.viewsMp[8];
+    }
+
+    public void OpenCarta()
+    {
+        movimientoMenu.currentView = movimientoMenu.viewsMp[9];
+    }
+    public void OpenBolsaColmillos()
+    {
+        movimientoMenu.currentView = movimientoMenu.viewsMp[10];
+    }
+    public void OpenArmadura()
+    {
+        movimientoMenu.currentView = movimientoMenu.viewsMp[11];
+    }
+    public void OpenTumba()
+    {
+        movimientoMenu.currentView = movimientoMenu.viewsMp[12];
+    }
+    public void CloseInfo()
+    {
+        movimientoMenu.currentView = movimientoMenu.viewsMp[5];
     }
 
 }

@@ -16,6 +16,17 @@ TagManager:
   - Golpe2
   - AtkBasicoE2
   - Rafaga2
+  - View5
+  - View1
+  - View4
+  - View2
+  - View3
+  - RangoAtaqueEnemy1
+  - View8
+  - View9
+  - View10
+  - View11
+  - View12
   layers:
   - Default
   - TransparentFX
