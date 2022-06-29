@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class Player : MonoBehaviour
 {
@@ -95,7 +96,11 @@ public class Player : MonoBehaviour
     public int enemigosDerrotados;
     //[SerializeField] private GameObject SamaelPrefab;
 
-  
+    [Header("Sfx")]
+    public AudioSource recibirDaño1;
+    public AudioSource dashSfx;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -155,6 +160,7 @@ public class Player : MonoBehaviour
         {
             if (dashCoolCounter <= 0f && dashCounter <= 0)
             {
+                dashSfx.Play();
                 dash = true;
                 dashCounter = dashLength;
                 StartCoroutine(Dash());
@@ -338,6 +344,8 @@ public class Player : MonoBehaviour
     
     IEnumerator Dash()
     {
+        
+
         if(movement.z > 0)
         {
             rb.AddForce(Vector3.forward * speedDash, ForceMode.Impulse);
@@ -706,6 +714,7 @@ public class Player : MonoBehaviour
 
     public void RecieveDmgWhenBlock(float dmg)
     {
+        recibirDaño1.Play();
         actualvida -= dmg * 0.25f;
         actualvida = Mathf.Max(0, actualvida);
     }
