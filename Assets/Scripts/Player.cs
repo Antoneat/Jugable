@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
     public bool basicoMejorado;
     public bool cargadoRojo;
     public bool cargadoAzul;
+    public TiendaRap tiendaRap;
 
     [Header("VFX")]
     public GameObject ataqueUno;
@@ -626,6 +627,11 @@ public class Player : MonoBehaviour
         if (collider.gameObject.CompareTag("Escalera"))
         {
             closeToStair = true;
+        }
+
+        if(collider.gameObject.CompareTag("Tienda"))
+        {
+            tiendaRap.FirstSelectOption();
         }
     }
 
