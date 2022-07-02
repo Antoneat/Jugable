@@ -6,7 +6,11 @@ public enum PlayerState { Normal, Quemado, Sangrado, Stun };
 public class StateManager : MonoBehaviour
 {
     public PlayerState ps;
-    Player Pl;
+    public Player Pl;
+    public LifeBar lifebar;
+
+    public bool dos;
+
 
     public float dmgTick; // Damage each tick
     public float timeXTick; // Time in seconds each tick of damage
@@ -14,15 +18,15 @@ public class StateManager : MonoBehaviour
 
     void Start()
     {
-
+        Pl = GetComponent<Player>();
         ps = PlayerState.Normal;
-
     }
 
 
     void Update()
     {
         Stados();
+        if (dos == true) Pl.speed = 150;
     }
 
     IEnumerator Normal()
@@ -40,6 +44,7 @@ public class StateManager : MonoBehaviour
                 break;
 
             case PlayerState.Quemado:
+                if(dos == false)
                 StartCoroutine(OnFire());
                 break;
 
@@ -55,23 +60,26 @@ public class StateManager : MonoBehaviour
 
     IEnumerator OnFire()
     {
-        dmgTick = 2;
-        timeXTick = 2;
-        totalTicks = 4;
+        dos = true;
 
-        int ticks = 0;
+        dmgTick = 0.5f;
+        timeXTick = 1f;
+        totalTicks = 6;
+
         int totalTicksTemp = totalTicks;
 
-        while (ticks < totalTicksTemp)
+        for (int ticks = 0; ticks < totalTicksTemp; ticks++)
         {
-            ticks++;
             Pl.actualvida -= dmgTick;  // Player recive damage
-            Pl.speed -= 4;
+            lifebar.SetVida(Pl.actualvida);
+            ticks++;
+            Debug.Log(ticks);
+            Debug.Log(totalTicksTemp);
             yield return new WaitForSecondsRealtime(timeXTick);  // wait second
-            ps = PlayerState.Normal;
-            yield break;
-
         }
+        yield return new WaitForSecondsRealtime(0.5f);
+        ps = PlayerState.Normal;
+        dos = false;
         yield break;
     }
 
