@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -73,7 +73,7 @@ MonoBehaviour:
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: ArzScene
+  m_LastLoadedLayoutName: 
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 170
+  controlID: 129
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 215
+  controlID: 71
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 474
     width: 430
     height: 473
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -447,11 +447,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 1132
-      height: 905
+      height: 926
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 566, y: 452.5}
+    m_Translation: {x: 566, y: 463}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -459,9 +459,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -566
-      y: -452.5
+      y: -463
       width: 1132
-      height: 905
+      height: 926
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1132, y: 926}
@@ -511,36 +511,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Modelados/Modelados con Textura/silla/Materials
+    - Assets/Modelados/Modelados con Textura/Arbol
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Modelados/Modelados con Textura/silla/Materials
+  - Assets/Modelados/Modelados con Textura/Arbol
   m_LastFoldersGridSize: 96
   m_LastProjectPath: E:\TLS\5to Ciclo\Taller\Team\Git\Jugable
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 981d0b00
-    m_LastClickedID: 728472
-    m_ExpandedIDs: 00000000747c0000767c0000167d00001a7d000000ca9a3b
+    scrollPos: {x: 0, y: 223}
+    m_SelectedIDs: 2c8b0000
+    m_LastClickedID: 35628
+    m_ExpandedIDs: 00000000ee8a0000f08a0000f28a0000f48a0000108b0000148b0000288b0000468b000006a5000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Esqueletos
-      m_OriginalName: Esqueletos
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 32050
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 7}
     m_SearchString: 
@@ -554,7 +554,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000747c0000767c0000787c00007a7c00007c7c00007e7c0000807c0000
+    m_ExpandedIDs: 00000000ee8a0000f08a0000f28a0000f48a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -606,7 +606,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 365}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 142
@@ -669,9 +669,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: c88b0000
       m_LastClickedID: 0
-      m_ExpandedIDs: e0a9fbff3823fcffbe81fcff6883fcff44f8fcff2ac2fdff9af8fdff3404feff3604feffcc0dfeff7a2afeff7c2afeff4853feff0a6bfeff0c6bfeffce82fefff090feffce93feff18b0feffecd6feffeed6feffc6d7feffc8d7feff44effeffc428ffffe229ffff562effffac8bffffae8bffff888effff8a8effff22a8fffffacfffff72e1ffffb8f6ffffcef9ffffbafaffff0afbffff9461000096690000126b0000de6b0000626c0000b46f0000467200007c7400007a790000b27a0000a8850000c6950000f0960000ce9d0000aa9e000036a700007ea80000aea80000e0ab0000d0af0000b8770900c20b0b006a150b00
+      m_ExpandedIDs: faa6ffff16fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -920,9 +920,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -11.006276, y: 16.87375, z: -36.96793}
+    m_Target: {x: 23.65316, y: 16.005405, z: -30.052658}
     speed: 2
-    m_Value: {x: -11.006276, y: 16.87375, z: -36.96793}
+    m_Value: {x: 23.65316, y: 16.005405, z: -30.052658}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -969,13 +969,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.4289199, y: 0.021722164, z: -0.010205459, w: 0.90308625}
+    m_Target: {x: 0.31171733, y: 0.048471365, z: -0.015800389, w: 0.94886196}
     speed: 2
-    m_Value: {x: 0.43024975, y: 0.021705603, z: -0.01023746, w: 0.9023909}
+    m_Value: {x: 0.31027728, y: 0.04849245, z: -0.015726816, w: 0.94927824}
   m_Size:
     m_Target: 1.8023766
     speed: 2
-    m_Value: 0.7820892
+    m_Value: 3.1814046
   m_Ortho:
     m_Target: 0
     speed: 2
