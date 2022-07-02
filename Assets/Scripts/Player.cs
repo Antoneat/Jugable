@@ -18,15 +18,16 @@ public class Player : MonoBehaviour
 
     [Header("Vida")]
     public float actualvida;
-    private float maxVida = 20;
+    private float maxVida = 30;
+    public LifeBar lifeBar;
 
     [Header("Desplazamiento")]
     public bool dash;
     public float speedDash;
-    private float dashCooldown = 0.2f;
-    [SerializeField] private float dashLength = 0.1f;
-    public float dashCounter;
+    public float dashCooldown;
     public float dashCoolCounter;
+    public bool killedEnemy;
+    public GameObject dashIMG;
 
     [Header("AtaqueCombo")]
     public int numberOfClicks = 0;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
     public GameObject ataqueCargGO;
     public int AttackDmgCargado = 5;
     public bool attackCharged = false;
+    public GameObject attackChargIMG;
 
     [Header("Bloqueo")]
     public float bloqueoDuracion;
@@ -56,18 +58,19 @@ public class Player : MonoBehaviour
     public float bloqueoCooldown;
     public float bloqueoCounter;
     public LayerMask enemyLayer;
+    public GameObject bloqueoIMG;
 
     [Header("Almas")]
-    public float almas;
-    public TMP_Text almasText;
+    public float almasTotal;
+    public TMP_Text almasTextTotal;
 
     [Header("Extra")]
     [SerializeField] private Enemy enmy;
     [SerializeField] private Enemy2 enmy2;
-    [SerializeField] private Yaldabaoth yp;
+    //[SerializeField] private Yaldabaoth yp;
     [SerializeField] private int sceneId = 1;
-    public TMP_Text vidapersonajeTxt;
-    public TMP_Text dmgTxt;
+    //public TMP_Text vidapersonajeTxt;
+    //public TMP_Text dmgTxt;
     int a = 0;
     int b = 0;
     public StateManager SM;
@@ -107,7 +110,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         enemigosDerrotados = 0;
         actualvida = maxVida;
-        //almas = 0;
+        lifeBar.SetMaxVida(maxVida);
         blck = false;
         bloqueoDuracion = bloqueoMaxDuracion;
 
@@ -115,26 +118,28 @@ public class Player : MonoBehaviour
 
         collecTxtGO.SetActive(false);
 
-        Console.instance.RegisterCommand("godmode", godmode, "Activar/Desactivar el modo Dios.");
-        Console.instance.RegisterCommand("restartlevel", resetlevel, "Reiniciar nivel");
-        Console.instance.RegisterCommand("previouslevel", previouslevel, "Nivel anterior");
-        Console.instance.RegisterCommand("nextlevel", nextlevel, "Siguiente nivel");
-        Console.instance.RegisterCommand("crt", crt, "Creditos");
-        Console.instance.RegisterCommand("infinitedmg", infinitedmg, "Daño infinito");
+        //Console.instance.RegisterCommand("godmode", godmode, "Activar/Desactivar el modo Dios.");
+        //Console.instance.RegisterCommand("restartlevel", resetlevel, "Reiniciar nivel");
+        //Console.instance.RegisterCommand("previouslevel", previouslevel, "Nivel anterior");
+        //Console.instance.RegisterCommand("nextlevel", nextlevel, "Siguiente nivel");
+        //Console.instance.RegisterCommand("crt", crt, "Creditos");
+        //Console.instance.RegisterCommand("infinitedmg", infinitedmg, "Daño infinito");
     }
 
     void Update()
     {
-        invocacionesEnemigos();
+        if(actualvida > maxVida)
+        {
+            actualvida = maxVida;
+            lifeBar.SetVida(actualvida);
+        }
+
+        //invocacionesEnemigos();
         Blocking();
 
         //Caida();
 
-        vidapersonajeTxt.text = "Vida: " + actualvida.ToString();
-
-        dmgTxt.text = "Daño: " + AttackDmgUno.ToString();
-
-       // almasText.text = "Almas: " + almas.ToString();
+        almasTextTotal.text = "x" + almasTotal.ToString(); 
 
         collecTxt.text = counterCollectables.ToString() + " / 5";
 
@@ -152,6 +157,7 @@ public class Player : MonoBehaviour
         }
 
         //movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        
         if(rb.velocity.magnitude > maxSpeed)
         {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -159,13 +165,33 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (dashCoolCounter <= 0f && dashCounter <= 0)
+            if (dashCoolCounter <= 0f || killedEnemy == true)
             {
                 dashSfx.Play();
                 dash = true;
-                dashCounter = dashLength;
+                dashCoolCounter = dashCooldown;
                 StartCoroutine(Dash());
             }
+        }
+
+        if (dashMejorado)
+        {
+            if(dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.deltaTime;
+            }
+            if(dashCoolCounter >= 0)
+            {
+                dash = false;
+            }
+            if(dashCoolCounter < 0)
+            {
+                dashIMG.SetActive(true);
+            }
+        }
+        else if (!dashMejorado)
+        {
+            dash = false;
         }
 
         if(bloqueoDuracion > 0 && Input.GetKey(KeyCode.K))
@@ -176,23 +202,6 @@ public class Player : MonoBehaviour
         if (bloqueoCounter <= bloqueoCooldown && blck == false)
         {
             bloqueoCounter -= Time.deltaTime;
-        }
-
-
-
-        if(dashCoolCounter > 0)
-        {
-            dashCoolCounter -= Time.deltaTime;
-        }
-        
-        if (dashCounter > 0)
-        {
-            dashCounter -= Time.deltaTime;
-            if (dashCounter <= 0)
-            {
-                dash = false;
-                dashCoolCounter = dashCooldown;
-            }
         }
 
         attackCooldown -= Time.deltaTime;
@@ -238,6 +247,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(AttackingCharg());
             timePressed = 1f;
+            speed = 0;
         }
         
         if (closeToStair)
@@ -265,45 +275,53 @@ public class Player : MonoBehaviour
             //movement = new Vector3(0, 0, 0);
         }
 
-        if (horizontal > 0) //Dirección donde se mueve
+        if (horizontal > 0 && !attackCharged) //Dirección donde se mueve
         {
+            speed = 400;
             movement.z = 0;
             movement.x = 1;
         }
-        else if (horizontal < 0)
+        else if (horizontal < 0 && !attackCharged)
         {
+            speed = 400;
             movement.z = 0;
             movement.x = -1;
         }
 
-        if(vertical > 0)
+        if (vertical > 0 && !attackCharged)
         {
+            speed = 400;
             movement.x = 0;
             movement.z = 1;
         }
-        else if (vertical < 0)
+        else if (vertical < 0 && !attackCharged)
         {
+            speed = 400;
             movement.x = 0;
             movement.z = -1;
         }
 
-        if(horizontal > 0 && vertical > 0)
+        if (horizontal > 0 && vertical > 0 && !attackCharged)
         {
+            speed = 283;
             movement.x = 1;
             movement.z = 1;
         }
-        else if (horizontal < 0 && vertical < 0)
+        else if (horizontal < 0 && vertical < 0 && !attackCharged)
         {
+            speed = 283;
             movement.x = -1;
             movement.z = -1;
         }
-        else if (horizontal > 0 && vertical < 0)
+        else if (horizontal > 0 && vertical < 0 && !attackCharged)
         {
+            speed = 283;
             movement.x = 1;
             movement.z = -1;
         }
-        else if (horizontal < 0 && vertical > 0)
+        else if (horizontal < 0 && vertical > 0 && !attackCharged)
         {
+            speed = 283;
             movement.x = -1;
             movement.z = 1;
         }
@@ -316,10 +334,6 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
-
-
-
-
     }
 
     //public void Caida()
@@ -345,8 +359,6 @@ public class Player : MonoBehaviour
     
     IEnumerator Dash()
     {
-        
-
         if(movement.z > 0)
         {
             rb.AddForce(Vector3.forward * speedDash, ForceMode.Impulse);
@@ -381,6 +393,7 @@ public class Player : MonoBehaviour
             rb.AddForce(new Vector3(-1, 0, -1) * speedDash, ForceMode.Impulse);
         }
 
+        killedEnemy = false;
         yield return new WaitForSecondsRealtime(0.3f);
         movement = new Vector3(0, 0, 0);
         yield break;
@@ -449,6 +462,7 @@ public class Player : MonoBehaviour
 
     IEnumerator AttackingCharg()
     {
+        attackChargIMG.SetActive(false);
         for (int i = 0; i < 5; i++)
         {
             ataqueCargGO.SetActive(true);
@@ -456,6 +470,8 @@ public class Player : MonoBehaviour
             ataqueCargGO.SetActive(false);
         }
         attackCharged = false;
+        speed = 400;
+        attackChargIMG.SetActive(true);
         yield break;
     }
 
@@ -465,6 +481,7 @@ public class Player : MonoBehaviour
         {
             blck = true;
             speed = 0;
+            bloqueoIMG.SetActive(false);
             Debug.Log("Bloqueando1");
             //animacion de bloqueo
         }
@@ -476,6 +493,7 @@ public class Player : MonoBehaviour
             StartCoroutine(DevolverDmg());
             bloqueoCounter = bloqueoCooldown;
             speed = 400;
+            bloqueoIMG.SetActive(true);
         }
     }
 
@@ -510,9 +528,8 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("manos"))
         {
-
             actualvida -= 4;
-
+            lifeBar.SetVida(actualvida);
         }
     }
 
@@ -523,9 +540,8 @@ public class Player : MonoBehaviour
 
         if (collider.gameObject.CompareTag("manos"))
         {
-
             actualvida -= 4;
-
+            lifeBar.SetVida(actualvida);
         }
 
         if (collider.gameObject.CompareTag("AtaqueNormalEnemy1"))
@@ -539,6 +555,7 @@ public class Player : MonoBehaviour
             else
             {
                 actualvida -= enmy.ataqueNormalDMG;
+                lifeBar.SetVida(actualvida);
             }
         }
 
@@ -555,6 +572,7 @@ public class Player : MonoBehaviour
             {
                 SM.ps = PlayerState.Sangrado;
                 actualvida -= enmy.mordiscoDMG;
+                lifeBar.SetVida(actualvida);
             }
         } 
 
@@ -569,6 +587,7 @@ public class Player : MonoBehaviour
             else
             {
                 actualvida -= enmy2.atkbasDMG;
+                lifeBar.SetVida(actualvida);
             }
         }
 
@@ -585,6 +604,7 @@ public class Player : MonoBehaviour
             {
                 SM.ps = PlayerState.Quemado;
                 actualvida -= enmy2.golpeDMG;
+                lifeBar.SetVida(actualvida);
             }
         }
 
@@ -601,28 +621,33 @@ public class Player : MonoBehaviour
             {
                 SM.ps = PlayerState.Quemado;
                 actualvida -= enmy2.rafagaDMG;
+                lifeBar.SetVida(actualvida);
             }
         }
 
         if (collider.gameObject.CompareTag("onda"))
         {
             actualvida -= 6;
+            lifeBar.SetVida(actualvida);
         }
 
-        if (collider.gameObject.CompareTag("basico1"))
-        {
-                actualvida -= yp.basico1DMG;
-        }
+        //if (collider.gameObject.CompareTag("basico1"))
+        //{
+        //    actualvida -= yp.basico1DMG;
+        //    lifeBar.SetVida(actualvida);
+        //}
 
-        if (collider.gameObject.CompareTag("basico3"))
-        {
-            actualvida -= yp.basico3DMG;
-        }
+        //if (collider.gameObject.CompareTag("basico3"))
+        //{
+        //    actualvida -= yp.basico3DMG;
+        //    lifeBar.SetVida(actualvida);
+        //}
 
-        if (collider.gameObject.CompareTag("especial"))
-        {
-            actualvida -= yp.especialDMG;
-        }
+        //if (collider.gameObject.CompareTag("especial"))
+        //{
+        //    actualvida -= yp.especialDMG;
+        //    lifeBar.SetVida(actualvida);
+        //}
 
         if (collider.gameObject.CompareTag("Escalera"))
         {
@@ -700,23 +725,23 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    public void invocacionesEnemigos()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Instantiate(BuscadorPrefab, transform.position + new Vector3(2, 0, 0), Quaternion.identity);
-        }
+    //public void invocacionesEnemigos()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.B))
+    //    {
+    //        Instantiate(BuscadorPrefab, transform.position + new Vector3(2, 0, 0), Quaternion.identity);
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Instantiate(VerdugoPrefab, transform.position + new Vector3(2,0,0), Quaternion.identity);
-        }
+    //    if (Input.GetKeyDown(KeyCode.V))
+    //    {
+    //        Instantiate(VerdugoPrefab, transform.position + new Vector3(2, 0, 0), Quaternion.identity);
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Instantiate(YaldaPrefab, transform.position + new Vector3(2, 3, 0), Quaternion.identity);
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.Y))
+    //    {
+    //        Instantiate(YaldaPrefab, transform.position + new Vector3(2, 3, 0), Quaternion.identity);
+    //    }
+    //}
 
     public void RecieveDmgWhenBlock(float dmg)
     {

@@ -66,9 +66,9 @@ public class ShopManager : MonoBehaviour
     }
     public void BuyUpgrade(Upgrade upgrade)
     {
-        if(plyr.almas>=upgrade.precio)
+        if(plyr.almasTotal>=upgrade.precio)
         {
-            plyr.almas -= upgrade.precio;
+            plyr.almasTotal -= upgrade.precio;
             upgrade.quantity++;
          
           ApplyUpgrade(upgrade);

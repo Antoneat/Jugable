@@ -28,6 +28,9 @@ TagManager:
   - View11
   - View12
   - Tienda
+  - FueraDelMundo
+  - manos
+  - onda
   layers:
   - Default
   - TransparentFX

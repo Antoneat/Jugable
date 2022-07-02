@@ -7,6 +7,8 @@ public class ObjetosRompibles : MonoBehaviour
     public Player plyr;
     public int vida = 1;
 
+    public float cantidadDeAlmas;
+
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -21,7 +23,7 @@ public class ObjetosRompibles : MonoBehaviour
     {
         if (vida <= 0)
         {
-            plyr.almas += 10;
+            plyr.almasTotal += cantidadDeAlmas;
             Destroy(gameObject);
         }
     }
