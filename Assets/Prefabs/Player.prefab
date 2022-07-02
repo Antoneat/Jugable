@@ -4933,7 +4933,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6a43f738bc4a83f4d8f216af54e81b11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7d5de4f8250a4c41bba19a916e80897, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10030,11 +10030,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   actualvida: 0
+  lifeBar: {fileID: 0}
   dash: 0
   speedDash: 100
-  dashLength: 0.36
-  dashCounter: 0
+  dashCooldown: 0
   dashCoolCounter: 0
+  killedEnemy: 0
+  dashIMG: {fileID: 0}
   numberOfClicks: 0
   AttackDmgUno: 10
   AttackDmgDos: 20
@@ -10047,6 +10049,7 @@ MonoBehaviour:
   ataqueCargGO: {fileID: 6996329269506922915}
   AttackDmgCargado: 2
   attackCharged: 0
+  attackChargIMG: {fileID: 0}
   bloqueoDuracion: 0
   bloqueoMaxDuracion: 4
   blck: 0
@@ -10056,20 +10059,19 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  almas: 0
-  almasText: {fileID: 0}
+  bloqueoIMG: {fileID: 0}
+  almasTotal: 0
+  almasTextTotal: {fileID: 0}
   enmy: {fileID: 0}
   enmy2: {fileID: 0}
-  yp: {fileID: 0}
   sceneId: 1
-  vidapersonajeTxt: {fileID: 0}
-  dmgTxt: {fileID: 0}
   SM: {fileID: 6996329270984734933}
   closeToStair: 0
   dashMejorado: 0
   basicoMejorado: 0
   cargadoRojo: 0
   cargadoAzul: 0
+  tiendaRap: {fileID: 0}
   ataqueUno: {fileID: 6996329271204846245}
   ataqueDos: {fileID: 6996329270220922002}
   ataqueTres: {fileID: 6996329269453992263}
@@ -10082,6 +10084,8 @@ MonoBehaviour:
   VerdugoPrefab: {fileID: 0}
   YaldaPrefab: {fileID: 0}
   enemigosDerrotados: 0
+  "recibirDa\xF1o1": {fileID: 0}
+  dashSfx: {fileID: 0}
 --- !u!114 &6996329270984734933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10095,6 +10099,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: 0
+  Pl: {fileID: 0}
+  lifebar: {fileID: 0}
+  dos: 0
   dmgTick: 0
   timeXTick: 0
   totalTicks: 0

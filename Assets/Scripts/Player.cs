@@ -394,7 +394,7 @@ public class Player : MonoBehaviour
         }
 
         killedEnemy = false;
-        yield return new WaitForSecondsRealtime(0.3f);
+        yield return new WaitForSecondsRealtime(0.2f);
         movement = new Vector3(0, 0, 0);
         yield break;
     }
