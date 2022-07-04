@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 975082111097015613}
   - component: {fileID: 975082111097015614}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Luz (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 975082111631037270}
   - component: {fileID: 975082111631037271}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Luz (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 975082112947445247}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arena de Almas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

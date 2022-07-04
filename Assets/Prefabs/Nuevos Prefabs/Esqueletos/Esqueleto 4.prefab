@@ -483,8 +483,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plyr: {fileID: 0}
-  vida: 10
+  vida: 1
   cantidadDeAlmas: 0
+  cantidadDeVida: 0
+  lifebar: {fileID: 0}
 --- !u!1 &702663014029853436
 GameObject:
   m_ObjectHideFlags: 0

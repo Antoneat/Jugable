@@ -60,7 +60,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plyr: {fileID: 0}
-  vida: 15
+  vida: 1
+  cantidadDeAlmas: 0
+  cantidadDeVida: 0
+  lifebar: {fileID: 0}
 --- !u!1001 &1875170327330121599
 PrefabInstance:
   m_ObjectHideFlags: 0

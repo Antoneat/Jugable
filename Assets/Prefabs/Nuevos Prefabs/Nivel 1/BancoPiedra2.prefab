@@ -143,5 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plyr: {fileID: 0}
-  vida: 45
+  vida: 5
   cantidadDeAlmas: 0
+  cantidadDeVida: 0
+  lifebar: {fileID: 0}

@@ -469,8 +469,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plyr: {fileID: 0}
-  vida: 10
+  vida: 1
   cantidadDeAlmas: 0
+  cantidadDeVida: 0
+  lifebar: {fileID: 0}
 --- !u!65 &6432937392793944882
 BoxCollider:
   m_ObjectHideFlags: 0

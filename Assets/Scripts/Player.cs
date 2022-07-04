@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float speed;
     public float maxSpeed;
     public Vector3 movement;
+    public Vector3 movement2;
     public Transform playerTransform;
     public Rigidbody rb;
     public SpriteRenderer spriteRenderer; //Giro del sprite
@@ -30,12 +31,13 @@ public class Player : MonoBehaviour
     public GameObject dashIMG;
 
     [Header("AtaqueCombo")]
+    public GameObject parentCombo;
     public int numberOfClicks = 0;
     private float lastClickedTime = 0;
     private float maxComboDelay = 0.8f;
-    public int AttackDmgUno = 10;
-    public int AttackDmgDos = 20;
-    public int AttackDmgTres = 30;
+    public float AttackDmgUno = 1;
+    public float AttackDmgDos = 1;
+    public float AttackDmgTres = 1.5f;
     public GameObject ataqueUnoGO;
     public GameObject ataqueDosGO;
     public GameObject ataqueTresGO;
@@ -81,10 +83,6 @@ public class Player : MonoBehaviour
     public bool cargadoAzul;
     public TiendaRap tiendaRap;
 
-    [Header("VFX")]
-    public GameObject ataqueUno;
-    public GameObject ataqueDos;
-    public GameObject ataqueTres;
 
     [Header("Coleccionables")]
     public int collectables = 1;
@@ -215,6 +213,10 @@ public class Player : MonoBehaviour
             attackCombo = true;
             attackCharged = false;
         }
+        if (timePressed <= 0.75f && Input.GetKey(KeyCode.J))
+        { 
+            //ANIMACION CARGA SALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
+        }
         if (timePressed < 0 && Input.GetKeyUp(KeyCode.J))
         {
             attackCombo = false;
@@ -227,9 +229,6 @@ public class Player : MonoBehaviour
             ataqueUnoGO.SetActive(false);
             ataqueDosGO.SetActive(false);
             ataqueTresGO.SetActive(false);
-            ataqueUno.SetActive(false);
-            ataqueDos.SetActive(false);
-            ataqueTres.SetActive(false);
         }
     }
 
@@ -271,21 +270,33 @@ public class Player : MonoBehaviour
         if (dash == false) 
         {
             rb.velocity = new Vector3(horizontal * speed * Time.fixedDeltaTime, rb.velocity.y, vertical * speed * Time.fixedDeltaTime);
-            playerTransform.rotation = Quaternion.LookRotation(movement);
+            //playerTransform.rotation = Quaternion.LookRotation(movement);
             //movement = new Vector3(0, 0, 0);
         }
 
-        if (horizontal > 0 && !attackCharged) //Dirección donde se mueve
+        #region ComboGiro
+
+        if (movement2.x == -1 && movement2.z == -1) parentCombo.transform.rotation = Quaternion.Euler(0, -90, 0);
+        if (movement2.x == 1 && movement2.z == -1) parentCombo.transform.rotation = Quaternion.Euler(0, 180, 0);
+        if (movement2.x == -1 && movement2.z == 1) parentCombo.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (movement2.x == 1 && movement2.z == 1) parentCombo.transform.rotation = Quaternion.Euler(0, 90, 0);
+		
+
+		#endregion
+
+		if (horizontal > 0 && !attackCharged) //Dirección donde se mueve
         {
             speed = 400;
             movement.z = 0;
             movement.x = 1;
+            movement2.x = 1;
         }
         else if (horizontal < 0 && !attackCharged)
         {
             speed = 400;
             movement.z = 0;
             movement.x = -1;
+            movement2.x = -1;
         }
 
         if (vertical > 0 && !attackCharged)
@@ -293,12 +304,14 @@ public class Player : MonoBehaviour
             speed = 400;
             movement.x = 0;
             movement.z = 1;
+            movement2.z = 1;
         }
         else if (vertical < 0 && !attackCharged)
         {
             speed = 400;
             movement.x = 0;
             movement.z = -1;
+            movement2.z = -1;
         }
 
         if (horizontal > 0 && vertical > 0 && !attackCharged)
@@ -306,24 +319,32 @@ public class Player : MonoBehaviour
             speed = 283;
             movement.x = 1;
             movement.z = 1;
+            movement2.x = 1;
+            movement2.z = 1;
         }
         else if (horizontal < 0 && vertical < 0 && !attackCharged)
         {
             speed = 283;
             movement.x = -1;
             movement.z = -1;
+            movement2.x = -1;
+            movement2.z = -1;
         }
         else if (horizontal > 0 && vertical < 0 && !attackCharged)
         {
             speed = 283;
             movement.x = 1;
             movement.z = -1;
+            movement2.x = 1;
+            movement2.z = -1;
         }
         else if (horizontal < 0 && vertical > 0 && !attackCharged)
         {
             speed = 283;
             movement.x = -1;
             movement.z = 1;
+            movement2.x = -1;
+            movement2.z = 1;
         }
 
         if (rb.velocity.x < 0) //Giro del sprite cuando mueve DERECHA o IZQUIERDA 
@@ -333,6 +354,7 @@ public class Player : MonoBehaviour
         else if (rb.velocity.x > 0)
         {
             spriteRenderer.flipX = true;
+
         }
     }
 
@@ -409,9 +431,6 @@ public class Player : MonoBehaviour
             ataqueUnoGO.SetActive(true);
             ataqueDosGO.SetActive(false);
             ataqueTresGO.SetActive(false);
-            ataqueUno.SetActive(true);
-            ataqueDos.SetActive(false);
-            ataqueTres.SetActive(false);
             attackCooldown = 0.25f;
             StartCoroutine(Slowness());
         }
@@ -423,9 +442,6 @@ public class Player : MonoBehaviour
             ataqueUnoGO.SetActive(false);
             ataqueDosGO.SetActive(true);
             ataqueTresGO.SetActive(false);
-            ataqueUno.SetActive(false);
-            ataqueDos.SetActive(true);
-            ataqueTres.SetActive(false);
             attackCooldown = 0.25f;
             StartCoroutine(Slowness());
         }
@@ -435,9 +451,6 @@ public class Player : MonoBehaviour
             ataqueUnoGO.SetActive(false);
             ataqueDosGO.SetActive(false);
             ataqueTresGO.SetActive(true);
-            ataqueUno.SetActive(false);
-            ataqueDos.SetActive(false);
-            ataqueTres.SetActive(true);
             attackCooldown = 0.25f;
             StartCoroutine(Slowness());
             StartCoroutine(RestartCombo());
@@ -463,10 +476,11 @@ public class Player : MonoBehaviour
     IEnumerator AttackingCharg()
     {
         attackChargIMG.SetActive(false);
-        for (int i = 0; i < 5; i++)
+        //ANIMACION CARGA SALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
+        for (int i = 0; i < 2; i++)
         {
             ataqueCargGO.SetActive(true);
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(1);
             ataqueCargGO.SetActive(false);
         }
         attackCharged = false;
@@ -483,13 +497,13 @@ public class Player : MonoBehaviour
             speed = 0;
             bloqueoIMG.SetActive(false);
             Debug.Log("Bloqueando1");
-            //animacion de bloqueo
+            //animacion de bloqueoSALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
         }
         if (bloqueoDuracion <= 0 || Input.GetKeyUp(KeyCode.K) || cargasDeExplosion == 5)
         {
             blck = false;
             Debug.Log("Suelte de tecla2");
-            // animacion de explosion
+            // animacion de explosionSALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
             StartCoroutine(DevolverDmg());
             bloqueoCounter = bloqueoCooldown;
             speed = 400;

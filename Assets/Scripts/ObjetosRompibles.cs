@@ -5,13 +5,16 @@ using UnityEngine;
 public class ObjetosRompibles : MonoBehaviour
 {
     public Player plyr;
-    public int vida = 1;
+    public float vida = 1;
 
     public float cantidadDeAlmas;
+    public float cantidadDeVida;
+    public LifeBar lifebar;
 
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        lifebar = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().lifeBar;
     }
 
     void Update()
@@ -24,6 +27,8 @@ public class ObjetosRompibles : MonoBehaviour
         if (vida <= 0)
         {
             plyr.almasTotal += cantidadDeAlmas;
+            plyr.actualvida += cantidadDeVida;
+            lifebar.SetVida(plyr.actualvida);
             Destroy(gameObject);
         }
     }
