@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
     [Header("Extra")]
     [SerializeField] private Enemy enmy;
     [SerializeField] private Enemy2 enmy2;
-    //[SerializeField] private Yaldabaoth yp;
+    [SerializeField] private Yaldabaoth yp;
     [SerializeField] private int sceneId = 1;
     //public TMP_Text vidapersonajeTxt;
     //public TMP_Text dmgTxt;
@@ -652,27 +652,67 @@ public class Player : MonoBehaviour
 
         if (collider.gameObject.CompareTag("onda"))
         {
-            actualvida -= 6;
-            lifeBar.SetVida(actualvida);
+
+            if (blck == true)
+            {
+                RecieveDmgWhenBlock(actualvida -= 6);
+                cargasDeExplosion++;
+                Debug.Log("Recibiendo dmg reducido");
+            }
+            else
+            {
+                actualvida -= 6;
+                lifeBar.SetVida(actualvida);
+            }
         }
 
-        //if (collider.gameObject.CompareTag("basico1"))
-        //{
-        //    actualvida -= yp.basico1DMG;
-        //    lifeBar.SetVida(actualvida);
-        //}
+        if (collider.gameObject.CompareTag("basico1"))
+        {
+            if (blck == true)
+            {
+                RecieveDmgWhenBlock(yp.basico1DMG);
+                cargasDeExplosion++;
+                Debug.Log("Recibiendo dmg reducido");
+            }
+            else
+            {
+                actualvida -= yp.basico1DMG;
+                lifeBar.SetVida(actualvida);
+            }
+        }
 
-        //if (collider.gameObject.CompareTag("basico3"))
-        //{
-        //    actualvida -= yp.basico3DMG;
-        //    lifeBar.SetVida(actualvida);
-        //}
+        if (collider.gameObject.CompareTag("basico3"))
+        {
+            if (blck == true)
+            {
+                RecieveDmgWhenBlock(yp.basico3DMG);
+                cargasDeExplosion++;
+                Debug.Log("Recibiendo dmg reducido");
+            }
+            else
+            {
+                actualvida -= yp.basico3DMG;
+                lifeBar.SetVida(actualvida);
+            }
 
-        //if (collider.gameObject.CompareTag("especial"))
-        //{
-        //    actualvida -= yp.especialDMG;
-        //    lifeBar.SetVida(actualvida);
-        //}
+        }
+
+        if (collider.gameObject.CompareTag("especial"))
+        {
+            if (blck == true)
+            {
+                RecieveDmgWhenBlock(yp.especialDMG);
+                cargasDeExplosion++;
+                Debug.Log("Recibiendo dmg reducido");
+            }
+            else
+            {
+                actualvida -= yp.especialDMG;
+                lifeBar.SetVida(actualvida);
+            }
+
+        }
+
 
         if (collider.gameObject.CompareTag("Escalera"))
         {

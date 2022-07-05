@@ -31,6 +31,13 @@ TagManager:
   - FueraDelMundo
   - manos
   - onda
+  - especial
+  - basico3
+  - basico1
+  - PortalD
+  - PortalC
+  - PortalB
+  - portalA
   layers:
   - Default
   - TransparentFX
@@ -45,8 +52,8 @@ TagManager:
   - PisoCam
   - BG
   - Arena de Almas
-  - 
-  - 
+  - armas
+  - boss
   - 
   - 
   - 

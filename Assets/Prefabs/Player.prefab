@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741655993740389983}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: AttackCharged (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741655993864470572}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: AttackCombo (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19767,10 +19767,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   bloqueoIMG: {fileID: 0}
+  almas: 0
   almasTotal: 0
   almasTextTotal: {fileID: 0}
   enmy: {fileID: 0}
   enmy2: {fileID: 0}
+  yp: {fileID: 0}
   sceneId: 1
   SM: {fileID: 8735978878242805659}
   closeToStair: 0
@@ -19790,6 +19792,11 @@ MonoBehaviour:
   enemigosDerrotados: 0
   "recibirDa\xF1o1": {fileID: 0}
   dashSfx: {fileID: 0}
+  atq1Sfx: {fileID: 0}
+  atq2Sfx: {fileID: 0}
+  atq3Sfx: {fileID: 0}
+  bloqueoSfx: {fileID: 0}
+  sfxDmgBloqueando: {fileID: 0}
 --- !u!114 &8735978878242805659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19803,12 +19810,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: 0
-  Pl: {fileID: 0}
-  lifebar: {fileID: 0}
-  dos: 0
   dmgTick: 0
   timeXTick: 0
   totalTicks: 0
+  fireTicks: 0
+  bleedTicks: 0
+  lifebar: {fileID: 0}
+  speedless: 0
 --- !u!114 &5152461731609675019
 MonoBehaviour:
   m_ObjectHideFlags: 0

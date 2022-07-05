@@ -18,4 +18,12 @@ public class Arena : MonoBehaviour
             SM.ps = PlayerState.Quemado;
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            SM.ps = PlayerState.Quemado;
+        }
+    }
 }
