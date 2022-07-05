@@ -10,6 +10,7 @@ public class ObjetosRompibles : MonoBehaviour
 
     public float cantidadDeAlmas;
     public float cantidadDeVida;
+    public bool isDead = false;
     public LifeBar lifebar;
 
     public AudioSource sfxDestruido;
@@ -30,10 +31,14 @@ public class ObjetosRompibles : MonoBehaviour
     {
         if (vida <= 0)
         {
-            plyr.almasTotal += cantidadDeAlmas;
-            plyr.actualvida += cantidadDeVida;
-            lifebar.SetVida(plyr.actualvida);
-            Destroy(gameObject, 0.3f);
+            if (!isDead)
+            {
+                plyr.almasTotal += cantidadDeAlmas;
+                plyr.actualvida += cantidadDeVida;
+                lifebar.SetVida(plyr.actualvida);
+                isDead = true;
+            }
+            Destroy(gameObject,0.3f);
         }
     }
 

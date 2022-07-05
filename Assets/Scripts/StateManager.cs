@@ -62,7 +62,7 @@ public class StateManager : MonoBehaviour
             case PlayerState.Normal:
                 if ( !normalrunning )
                 {
-                    StartCoroutine(normal);
+                    StartCoroutine(Normal());
                 }
                 
                 break;
@@ -71,7 +71,7 @@ public class StateManager : MonoBehaviour
                
                 if (!onFirerunning)
                 {
-                    StartCoroutine(onFire);
+                    StartCoroutine(OnFire());
                     fireTicks = 0;
                 }
                
@@ -80,7 +80,7 @@ public class StateManager : MonoBehaviour
             case PlayerState.Sangrado:
                 if (!sangradorunning)
                 {
-                    StartCoroutine(sangrado);
+                    StartCoroutine(Sangrando());
                     bleedTicks = 0;
                 }
                 
@@ -89,7 +89,7 @@ public class StateManager : MonoBehaviour
             case PlayerState.Stun:
                 if (!stuneadorunning)
                 {
-                    StartCoroutine(stuneado);
+                    StartCoroutine(Stuneado());
                 }
                
                 break;
@@ -104,7 +104,7 @@ public class StateManager : MonoBehaviour
 
         dmgTick = 0.5f;
         timeXTick = 1;
-        totalTicks = 6;
+        totalTicks = 3;
 
        int totalTicksTemp = totalTicks;
 

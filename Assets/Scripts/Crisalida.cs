@@ -9,6 +9,7 @@ public class Crisalida : MonoBehaviour
     public float vida = 1;
 
     public float cantidadDeAlmas;
+    public bool isDead;
     public float cantidadDeVida;
     public LifeBar lifebar;
 
@@ -30,10 +31,14 @@ public class Crisalida : MonoBehaviour
     {
         if (vida <= 0)
         {
-            plyr.almasTotal += cantidadDeAlmas;
-            plyr.actualvida += cantidadDeVida;
-            lifebar.SetVida(plyr.actualvida);
-            Destroy(gameObject, 0.8f);
+            if (!isDead)
+            {
+                plyr.almasTotal += cantidadDeAlmas;
+                plyr.actualvida += cantidadDeVida;
+                lifebar.SetVida(plyr.actualvida);
+                isDead = true;
+            }
+            Destroy(gameObject, 0.3f);
         }
     }
 

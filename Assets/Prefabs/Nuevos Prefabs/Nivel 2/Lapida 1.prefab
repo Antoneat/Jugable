@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1018665789070750419}
   - component: {fileID: 1018665789070750420}
   - component: {fileID: 1018665789070750417}
+  - component: {fileID: 9205205211397559347}
   m_Layer: 0
   m_Name: polySurface3_polySurface8 (1)
   m_TagString: Untagged
@@ -98,6 +99,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3255924131193203783, guid: 9367ef019d5e81a4bae66e17a1fd0ea2, type: 3}
+--- !u!114 &9205205211397559347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018665789070750421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a9ddae881dea346915a05195c47b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plyr: {fileID: 0}
+  vida: 2
+  cantidadDeAlmas: 0
+  cantidadDeVida: 0
+  lifebar: {fileID: 0}
+  sfxDestruido: {fileID: 0}
 --- !u!1 &1018665789353590192
 GameObject:
   m_ObjectHideFlags: 0
