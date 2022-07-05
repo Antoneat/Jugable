@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     public GameObject bloqueoIMG;
 
     [Header("Almas")]
+    public float almas;
     public float almasTotal;
     public TMP_Text almasTextTotal;
 

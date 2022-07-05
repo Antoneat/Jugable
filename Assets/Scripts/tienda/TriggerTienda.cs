@@ -8,15 +8,12 @@ public class TriggerTienda : MonoBehaviour
     public void On()
     {
         ShopManager.instance.ToggleShop();
-        Sucubo.SetActive(false);
-
     }
 
 
     public void Off()
     {
         ShopManager.instance.ToggleShop();
-        Sucubo.SetActive(true);
     }
     
 }

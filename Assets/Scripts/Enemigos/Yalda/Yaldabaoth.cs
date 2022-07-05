@@ -36,8 +36,10 @@ public class Yaldabaoth : MonoBehaviour
     public YaldaPatrol yp;
     public bool coPlay;
 
-    void Start()
+    private void Awake()
     {
+
+        actualvida = maxVida;
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         basico1GO.SetActive(false);
         basico3GO.SetActive(false);
@@ -47,9 +49,11 @@ public class Yaldabaoth : MonoBehaviour
         basico3Txt.SetActive(false);
         especialTxt.SetActive(false);
 
-        actualvida = maxVida;
-
-        coPlay=false;
+        coPlay = false;
+    }
+    void Start()
+    {
+   
     }
 
     void Update()

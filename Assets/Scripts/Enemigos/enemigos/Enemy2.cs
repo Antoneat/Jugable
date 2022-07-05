@@ -10,13 +10,11 @@ public class Enemy2 : MonoBehaviour
     public StateManager SM;
     public enemyPatrol2 eP2;
 
-
     public float proyectileSpeed = 4;
 
     [Header("Vida")]
     public float vida;
     public bool dead;
-    public LifeBar lifebar;
 
     [Header("AtaqueBasico")]
     public float atkbasDMG;
@@ -42,8 +40,7 @@ public class Enemy2 : MonoBehaviour
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        lifebar = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().lifeBar;
-
+       
         dead = false;
 
         atkbasGO.SetActive(false);
@@ -68,9 +65,10 @@ public class Enemy2 : MonoBehaviour
     {
         if (vida <= 0)
         {
-            plyr.actualvida += 2;
-            plyr.almasTotal += 1;
-            lifebar.SetVida(plyr.actualvida);
+            plyr.killedEnemy = true;
+            plyr.dashIMG.SetActive(true);
+            plyr.actualvida += 10;
+            plyr.almas += 10;
             plyr.enemigosDerrotados++;
             dead = true;
             Destroy(gameObject);

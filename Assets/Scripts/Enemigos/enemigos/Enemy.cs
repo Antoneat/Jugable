@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     [Header("Vida")]
     public float vida;
     public bool dead;
-    public LifeBar lifebar;
 
     [Header("AtaqueBasico")]
     public float ataqueNormalDMG;
@@ -34,7 +33,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        lifebar = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().lifeBar;
         //ObjetoASeguir = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         dead = false;
         basicoGO.SetActive(false);
@@ -55,9 +53,10 @@ public class Enemy : MonoBehaviour
     {
         if (vida <= 0)
         {
-            plyr.actualvida += 1;
-            plyr.almasTotal += 1;
-            lifebar.SetVida(plyr.actualvida);
+            plyr.killedEnemy = true;
+            plyr.dashIMG.SetActive(true);
+            plyr.actualvida += 10;
+            plyr.almas += 10;
             plyr.enemigosDerrotados++;
             dead = true;
             Destroy(gameObject);
