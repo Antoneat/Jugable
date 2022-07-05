@@ -11,14 +11,23 @@ public class StateManager : MonoBehaviour
     public float dmgTick; // Damage each tick
     public float timeXTick; // Time in seconds each tick of damage
     public int totalTicks; // how many seconds ( ticks )  damage each tick
+
+    public int fireTicks;
+    public int bleedTicks;
+
     IEnumerator normal;
     IEnumerator onFire; 
     IEnumerator sangrado; 
     IEnumerator stuneado;
+
     bool normalrunning;
     bool onFirerunning;
     bool sangradorunning;
     bool stuneadorunning;
+
+
+    public LifeBar lifebar;
+    public bool speedless;
 
     void Start()
     {
@@ -27,7 +36,7 @@ public class StateManager : MonoBehaviour
         sangrado = Sangrando();
         stuneado= Stuneado();
 
-        ps = PlayerState.Normal;
+       ps = PlayerState.Normal;
        Pl=GetComponent<Player>();   
     }
 
@@ -35,14 +44,15 @@ public class StateManager : MonoBehaviour
     void Update()
     {
         Stados();
+        if (speedless == true) Pl.speed = 150;
     }
 
     IEnumerator Normal()
     {
        normalrunning = true;
-        yield return new WaitForSecondsRealtime(0.1f);
-        normalrunning = false;
-        yield break;
+       yield return new WaitForSecondsRealtime(0.1f);
+       normalrunning = false;
+       yield break;
     }
 
     void Stados()
@@ -58,9 +68,11 @@ public class StateManager : MonoBehaviour
                 break;
 
             case PlayerState.Quemado:
+               
                 if (!onFirerunning)
                 {
                     StartCoroutine(onFire);
+                    fireTicks = 0;
                 }
                
                 break;
@@ -69,6 +81,7 @@ public class StateManager : MonoBehaviour
                 if (!sangradorunning)
                 {
                     StartCoroutine(sangrado);
+                    bleedTicks = 0;
                 }
                 
                 break;
@@ -85,46 +98,52 @@ public class StateManager : MonoBehaviour
 
     IEnumerator OnFire()
     {
+        speedless = true;
         onFirerunning = true;
-        dmgTick = 2;
-        timeXTick = 2;
-        totalTicks = 4;
+        yield return new WaitForSecondsRealtime(0.5f);
 
-        int ticks = 0;
-        int totalTicksTemp = totalTicks;
+        dmgTick = 0.5f;
+        timeXTick = 1;
+        totalTicks = 6;
 
-        while (ticks < totalTicksTemp)
-        {
-            ticks++;
-            Pl.actualvida -= dmgTick;  // Player recive damage
-           // Pl.speed -= 4;
-            yield return new WaitForSecondsRealtime(timeXTick);  // wait second
-            
-            yield return null;
-        }
-        ps = PlayerState.Normal;
-        onFirerunning = false;
+       int totalTicksTemp = totalTicks;
+
+       while (fireTicks < totalTicksTemp)
+       {
+           fireTicks++;
+           Pl.actualvida -= dmgTick;  // Player recive damage
+           yield return new WaitForSecondsRealtime(timeXTick);  // wait second
+           yield return null;
+       }
+
+       yield return new WaitForSecondsRealtime(0.5f);
+        fireTicks = 0;
+       ps = PlayerState.Normal;
+       speedless = false;
+       onFirerunning = false;
+        yield return null;
     }
 
     IEnumerator Sangrando()
     {
         sangradorunning = true;
-        dmgTick = 4;
-        timeXTick = 4;
-        totalTicks = 3;
+        dmgTick = 0.5f;
+        timeXTick = 1;
+        totalTicks = 6;
 
-        int ticks = 0;
         int totalTicksTemp = totalTicks;
 
-        while (ticks < totalTicksTemp)
+        while (bleedTicks < totalTicksTemp)
         {
-            ticks++;
+            bleedTicks++;
             Pl.actualvida -= dmgTick;  // Player recive damage
             yield return new WaitForSecondsRealtime(timeXTick);  // wait second
           
             yield return null;
 
         }
+        yield return new WaitForSecondsRealtime(0.5f);
+        bleedTicks = 0;
         sangradorunning = false;
         ps = PlayerState.Normal;
     }

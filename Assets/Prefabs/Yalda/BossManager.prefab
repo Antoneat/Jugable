@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5545323129457847391}
   - component: {fileID: 5545323129457847390}
   - component: {fileID: 5545323129457847389}
+  - component: {fileID: 4945914979875493883}
+  - component: {fileID: 7653595273722253826}
   m_Layer: 0
   m_Name: Yalda
   m_TagString: Untagged
@@ -118,14 +120,56 @@ MonoBehaviour:
   maxVida: 40
   basico1DMG: 0
   basico1GO: {fileID: 5545323130646622025}
+  basico1Txt: {fileID: 0}
   basico3DMG: 0
   basico3GO: {fileID: 5545323129975664779}
+  basico3Txt: {fileID: 0}
   especialDMG: 0
   especialGO: {fileID: 5545323129478780251}
-  goA: {fileID: 0}
-  goB: {fileID: 0}
-  goC: {fileID: 0}
-  yp: {fileID: 0}
+  especialTxt: {fileID: 0}
+  yp: {fileID: 4945914979875493883}
+  coPlay: 0
+--- !u!114 &4945914979875493883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5545323129457847387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715e1a10cd6f11841aba2b63eaaa10d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 7653595273722253826}
+  destPoint: 0
+  goal: {fileID: 0}
+  playerDistance: 0
+  awareAI: 15
+  atkRange: 12
+  y: {fileID: 5545323129457847389}
+--- !u!195 &7653595273722253826
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5545323129457847387}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5545323129478780251
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +402,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  Speed: 5
   teleport: {fileID: 0}
   teleport2: {fileID: 0}
   teleport3: {fileID: 0}
@@ -368,6 +411,8 @@ MonoBehaviour:
   goal2: {fileID: 0}
   goal3: {fileID: 0}
   goal4: {fileID: 0}
+  h: {fileID: 0}
+  plyr: {fileID: 0}
 --- !u!1 &5545323129800581006
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +463,8 @@ MonoBehaviour:
   y: {fileID: 5545323129457847389}
   Yaldabaoth: {fileID: 5545323129457847387}
   Hands: {fileID: 5545323129906590073}
+  plyr: {fileID: 0}
+  coPlay: 0
 --- !u!1 &5545323129906590073
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,8 +526,11 @@ MonoBehaviour:
   pointb: {fileID: 0}
   pointc: {fileID: 0}
   pointd: {fileID: 0}
-  itemSp: {fileID: 0}
+  onda: {fileID: 0}
+  isCreated: 0
+  isDestroyed: 0
   vulnerable: 0
+  coPlay: 0
 --- !u!1 &5545323129975664779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  Speed: 5
   teleport: {fileID: 0}
   teleport2: {fileID: 0}
   teleport3: {fileID: 0}
@@ -1113,6 +1162,8 @@ MonoBehaviour:
   goal2: {fileID: 0}
   goal3: {fileID: 0}
   goal4: {fileID: 0}
+  h: {fileID: 0}
+  plyr: {fileID: 0}
 --- !u!1 &5545323131326603403
 GameObject:
   m_ObjectHideFlags: 0
