@@ -101,6 +101,12 @@ public class Player : MonoBehaviour
     [Header("Sfx")]
     public AudioSource recibirDaño1;
     public AudioSource dashSfx;
+    
+    public AudioSource atq1Sfx;
+    public AudioSource atq2Sfx;
+    public AudioSource atq3Sfx;
+    public AudioSource bloqueoSfx;
+    public AudioSource sfxDmgBloqueando;
 
 
     void Start()
@@ -428,10 +434,11 @@ public class Player : MonoBehaviour
 
         if (numberOfClicks == 1 && attackCooldown <=0)
         {
+            atq1Sfx.Play();
             ataqueUnoGO.SetActive(true);
             ataqueDosGO.SetActive(false);
             ataqueTresGO.SetActive(false);
-            attackCooldown = 0.25f;
+            attackCooldown = 0.7f;
             StartCoroutine(Slowness());
         }
 
@@ -439,6 +446,7 @@ public class Player : MonoBehaviour
 
         if (numberOfClicks == 2 && attackCooldown <= 0)
         {
+            atq2Sfx.Play();
             ataqueUnoGO.SetActive(false);
             ataqueDosGO.SetActive(true);
             ataqueTresGO.SetActive(false);
@@ -448,10 +456,11 @@ public class Player : MonoBehaviour
 
         if (numberOfClicks == 3 && attackCooldown <= 0)
         {
+            atq3Sfx.Play();
             ataqueUnoGO.SetActive(false);
             ataqueDosGO.SetActive(false);
             ataqueTresGO.SetActive(true);
-            attackCooldown = 0.25f;
+            attackCooldown = 0.9f;
             StartCoroutine(Slowness());
             StartCoroutine(RestartCombo());
         }
@@ -468,7 +477,7 @@ public class Player : MonoBehaviour
 
     IEnumerator RestartCombo()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.1f);
         numberOfClicks = 0;
         yield break;
     }
@@ -493,6 +502,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.K) && bloqueoCounter <= 0)
         {
+            bloqueoSfx.Play();
             blck = true;
             speed = 0;
             bloqueoIMG.SetActive(false);
@@ -759,6 +769,7 @@ public class Player : MonoBehaviour
 
     public void RecieveDmgWhenBlock(float dmg)
     {
+        sfxDmgBloqueando.Play();
         recibirDaño1.Play();
         actualvida -= dmg * 0.25f;
         actualvida = Mathf.Max(0, actualvida);

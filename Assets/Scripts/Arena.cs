@@ -9,8 +9,6 @@ public class Arena : MonoBehaviour
     void Start()
     {
 
-       
-
     }
 
     private void OnTriggerEnter(Collider other)
