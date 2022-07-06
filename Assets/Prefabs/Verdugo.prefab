@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 979409370336354545}
   - component: {fileID: 8506037080635863092}
   - component: {fileID: -7081343751332437976}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Verdugo
   m_TagString: Enemigo
   m_Icon: {fileID: 0}

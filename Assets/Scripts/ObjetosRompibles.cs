@@ -67,5 +67,21 @@ public class ObjetosRompibles : MonoBehaviour
             vida -= plyr.AttackDmgCargado;
             sfxDestruido.Play();
         }
+
+        if (collider.gameObject.CompareTag("Enemigo"))
+        {
+            vida -= 1;
+            sfxDestruido.Play();
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+   
+    if (collision.gameObject.CompareTag("Enemigo"))
+    {
+        vida -= 1;
+        sfxDestruido.Play();
+    }
+    
     }
 }

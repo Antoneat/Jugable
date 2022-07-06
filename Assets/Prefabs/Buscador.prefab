@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 6673054284808124671}
   - component: {fileID: 3512289961150925359}
   - component: {fileID: -7902112140783596697}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Buscador
   m_TagString: Enemigo
   m_Icon: {fileID: 0}
