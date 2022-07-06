@@ -77,10 +77,11 @@ public class enemyPatrol : MonoBehaviour
 		if (agent.remainingDistance > agent.stoppingDistance)
         {
 			agent.isStopped = false;
-
+			// anim walk walk fashion baby work it 
 		}
 		else if (agent.remainingDistance < agent.stoppingDistance)
         {
+			// no mas walkl 
 			agent.isStopped = true; 
         }
 

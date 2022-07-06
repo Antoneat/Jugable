@@ -45,9 +45,9 @@ public class Yaldabaoth : MonoBehaviour
         basico3GO.SetActive(false);
         especialGO.SetActive(false);
 
-        basico1Txt.SetActive(false);
-        basico3Txt.SetActive(false);
-        especialTxt.SetActive(false);
+     //   basico1Txt.SetActive(false);
+       // basico3Txt.SetActive(false);
+        //especialTxt.SetActive(false);
 
         coPlay = false;
     }
@@ -85,17 +85,23 @@ public class Yaldabaoth : MonoBehaviour
         coPlay = true;
         yield return new WaitForSecondsRealtime(0.5f);
         basico1GO.SetActive(true);
-        basico1Txt.SetActive(true);
+
+        //anim empieza primera parte del ataque
+
         yield return new WaitForSecondsRealtime(1.5f);
         yp.agent.speed = 0;
         basico1GO.SetActive(false);
         basico3GO.SetActive(true);
-        basico1Txt.SetActive(false);
-        basico3Txt.SetActive(true);
+
+        //anim termina primera parte del ataque
+        //anim empieza segunda parte del ataque
+
         yield return new WaitForSecondsRealtime(3f);
         yp.agent.speed = 3;
         basico3GO.SetActive(false);
-        basico3Txt.SetActive(false);
+
+        //anim termina segunda parte del ataque
+
         yield return new WaitForSecondsRealtime(1f);
         coPlay = false;
         yield break;
@@ -103,14 +109,18 @@ public class Yaldabaoth : MonoBehaviour
     IEnumerator especial()
     {
         coPlay = true;
-        especialTxt.SetActive(true);
+
+        //anim empieza
+
         yp.agent.speed = 0;
         yield return new WaitForSecondsRealtime(3f);
         yp.agent.speed = 7;
         yp.agent.destination = yp.goal.position;
 
         yield return new WaitForSecondsRealtime(3f);
-        especialTxt.SetActive(false);
+
+        //anim termina
+
         yield return new WaitForSecondsRealtime(1f);
         coPlay = false;
         yield break;

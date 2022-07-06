@@ -49,9 +49,9 @@ public class Enemy2 : MonoBehaviour
         golpeGO.SetActive(false);
         rafagaGO.SetActive(false);
 
-        atkBTxt.SetActive(false);
-        golpeTxt.SetActive(false);
-        rafagaTxt.SetActive(false);
+        //atkBTxt.SetActive(false);
+        //golpeTxt.SetActive(false);
+       // rafagaTxt.SetActive(false);
 
         coPlay = false;
     }
@@ -101,10 +101,14 @@ public class Enemy2 : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         eP2.agent.isStopped = false;
         atkbasGO.SetActive(true);
-        atkBTxt.SetActive(true);
+
+        //anim empieza
+
         yield return new WaitForSecondsRealtime(4f);
         atkbasGO.SetActive(false);
-        atkBTxt.SetActive(false);
+
+        // anim termina
+
         yield return new WaitForSecondsRealtime(1f);
         coPlay = false;
         yield break;
@@ -119,12 +123,16 @@ public class Enemy2 : MonoBehaviour
         //GameObject clone = Instantiate(golpeGO, playerpos, Quaternion.identity);
         golpeGO.transform.position = playerpos;
         golpeGO.SetActive(true);
-        golpeTxt.SetActive(true);
+
+        //anim empieza
+
         // SM.ps = PlayerState.Quemado;
         eP2.agent.isStopped = false;
         yield return new WaitForSecondsRealtime(1f);
         golpeGO.SetActive(false);
-        golpeTxt.SetActive(false);
+
+        // anim termina
+
         yield return new WaitForSecondsRealtime(1f);
         coPlay = false;
         yield break;
@@ -136,14 +144,18 @@ public class Enemy2 : MonoBehaviour
         eP2.agent.isStopped = true;
         yield return new WaitForSecondsRealtime(1f);
         rafagaGO.SetActive(true);
-        rafagaTxt.SetActive(true);
+
+        //anim empieza
+
         float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
         rafagaGO.transform.position = Vector3.MoveTowards(transform.position, playerpos, step);
         //SM.ps = PlayerState.Quemado;
         eP2.agent.isStopped = false;
         yield return new WaitForSecondsRealtime(2f);
         rafagaGO.SetActive(false);
-        rafagaTxt.SetActive(false);
+
+        //anim termina
+
         yield return new WaitForSecondsRealtime(1f);
         coPlay = false;
         yield break;

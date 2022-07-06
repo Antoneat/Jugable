@@ -39,8 +39,8 @@ public class Enemy : MonoBehaviour
         basicoGO.SetActive(false);
         mordiscoGO.SetActive(false);
 
-        atkBTxt.SetActive(false);
-        mordiscoTxt.SetActive(false);
+       // atkBTxt.SetActive(false);
+        //mordiscoTxt.SetActive(false);
 
         coPlay = false;
     }
@@ -84,10 +84,14 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         eP.agent.isStopped = false;
         basicoGO.SetActive(true);
-        atkBTxt.SetActive(true);
+
+        //anim empieza
+
         yield return new WaitForSecondsRealtime(2f);
         basicoGO.SetActive(false);
-        atkBTxt.SetActive(false);
+
+        //anim termina
+
         yield return new WaitForSecondsRealtime(1f);
         coPlay = false;
         yield break;
@@ -100,11 +104,15 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         eP.agent.isStopped = false;
         mordiscoGO.SetActive(true);
-        mordiscoTxt.SetActive(true);
+
+        //anim empieza
+
         //SM.ps = PlayerState.Sangrado;
         yield return new WaitForSecondsRealtime(2f);
         mordiscoGO.SetActive(false);
-        mordiscoTxt.SetActive(false);
+
+        //anim termina
+
         yield return new WaitForSecondsRealtime(1f);
         coPlay = false;
         yield break;

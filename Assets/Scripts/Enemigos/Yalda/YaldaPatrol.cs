@@ -74,11 +74,13 @@ public class YaldaPatrol : MonoBehaviour
 
 		if (agent.remainingDistance > agent.stoppingDistance)
 		{
+			// anim walk walk fashion baby work it 
 			agent.isStopped = false;
 
 		}
 		else if (agent.remainingDistance < agent.stoppingDistance)
 		{
+			// no mas walk
 			agent.isStopped = true;
 		}
 
