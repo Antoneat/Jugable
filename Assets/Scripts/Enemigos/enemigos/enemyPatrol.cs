@@ -38,12 +38,12 @@ public class enemyPatrol : MonoBehaviour
 			LookAtPlayer();
 			Debug.Log("Seen");
 			Chase();
-			agent.isStopped = false;
+			//agent.isStopped = false;
 		}
 		else if (playerDistance > awareAI)
 		{
 			LookAtPlayer();
-			agent.isStopped = true;
+			//agent.isStopped = true;
 		}
 
 
@@ -51,12 +51,12 @@ public class enemyPatrol : MonoBehaviour
 		{
 
 			ee.ChooseAtk();
-			agent.isStopped = false;
+			//agent.isStopped = false;
 		}
 		else if (playerDistance > atkRange )
 		{
 			LookAtPlayer();
-			agent.isStopped = false;
+			////agent.isStopped = false;
 		}
 	}
 
