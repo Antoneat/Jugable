@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
     public SpriteRenderer spriteRenderer; //Giro del sprite
     public LayerMask suelo;
+    public Animator anim;
 
     [Header("Vida")]
     public float actualvida;
@@ -239,8 +240,14 @@ public class Player : MonoBehaviour
             attackCharged = false;
         }
         if (timePressed <= 0.75f && Input.GetKey(KeyCode.J))
-        { 
+        {
+            anim.SetBool("ChargingAttack", true);
             //ANIMACION CARGA SALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
+        }
+        if (timePressed <=0.75f && timePressed >= 0 && Input.GetKeyUp(KeyCode.J))
+        {
+            anim.SetBool("ChargingAttack", false);
+            anim.SetTrigger("Cancel");
         }
         if (timePressed < 0 && Input.GetKeyUp(KeyCode.J))
         {
@@ -408,35 +415,43 @@ public class Player : MonoBehaviour
     {
         if(movement.z > 0)
         {
+            anim.SetTrigger("Dash");
             rb.AddForce(Vector3.forward * speedDash, ForceMode.Impulse);
         }
         else if (movement.z < 0)
         {
+            anim.SetTrigger("Dash");
             rb.AddForce(Vector3.back * speedDash, ForceMode.Impulse);
         }
         else if (movement.x > 0)
         {
+            anim.SetTrigger("Dash");
             rb.AddForce(Vector3.right * speedDash, ForceMode.Impulse);
         }
         else if (movement.x < 0)
         {
+            anim.SetTrigger("Dash");
             rb.AddForce(Vector3.left * speedDash, ForceMode.Impulse);
         }
 
         if (movement.z > 0 && movement.x > 0)
         {
+            anim.SetTrigger("Dash");
             rb.AddForce(new Vector3(1, 0, 1) * speedDash, ForceMode.Impulse);
         }
         else if (movement.z > 0 && movement.x < 0)
         {
+            anim.SetTrigger("Dash");
             rb.AddForce(new Vector3(-1, 0, 1) * speedDash, ForceMode.Impulse);
         }
         else if (movement.z < 0 && movement.x > 0)
         {
+            anim.SetTrigger("Dash");
             rb.AddForce(new Vector3(1, 0, -1) * speedDash, ForceMode.Impulse);
         }
         else if (movement.z < 0 && movement.x < 0)
         {
+            anim.SetTrigger("Dash");
             rb.AddForce(new Vector3(-1, 0, -1) * speedDash, ForceMode.Impulse);
         }
 
@@ -512,8 +527,10 @@ public class Player : MonoBehaviour
     IEnumerator AttackingCharg()
     {
         attackChargIMG.SetActive(false);
+        anim.SetBool("ChargingAttack", false);
+        anim.SetTrigger("Release");
         //ANIMACION CARGA SALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
-        if(cargadoAzul == false || cargadoRojo == false)
+        if (cargadoAzul == false || cargadoRojo == false)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -582,12 +599,14 @@ public class Player : MonoBehaviour
             blck = true;
             speed = 0;
             Debug.Log("Bloqueando1");
+            anim.SetBool("ChargingShield", true);
             //animacion de bloqueoSALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
         }
         if (bloqueoDuracion <= 0 || Input.GetKeyUp(KeyCode.K) && blck == true || cargasDeExplosion == 5)
         {
             blck = false;
             Debug.Log("Suelte de tecla2");
+            anim.SetBool("ChargingShield", false);
             // animacion de explosionSALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
             StartCoroutine(DevolverDmg());
             bloqueoDuracion = bloqueoMaxDuracion;

@@ -7,6 +7,7 @@ public class StateManager : MonoBehaviour
 {
     public PlayerState ps;
     Player Pl;
+    public Animator anim;
 
     public float dmgTick; // Damage each tick
     public float timeXTick; // Time in seconds each tick of damage
@@ -98,6 +99,7 @@ public class StateManager : MonoBehaviour
 
     IEnumerator OnFire()
     {
+        anim.speed = 0.5f;
         speedless = true;
         onFirerunning = true;
         yield return new WaitForSecondsRealtime(0.5f);
@@ -122,6 +124,7 @@ public class StateManager : MonoBehaviour
         ps = PlayerState.Normal;
         speedless = false;
         onFirerunning = false;
+        anim.speed = 1;
         yield return null;
     }
 
