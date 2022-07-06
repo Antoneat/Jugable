@@ -72,8 +72,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Enemy2 enmy2;
     [SerializeField] private Yaldabaoth yp;
     [SerializeField] private int sceneId = 1;
-    //public TMP_Text vidapersonajeTxt;
-    //public TMP_Text dmgTxt;
     int a = 0;
     int b = 0;
     public StateManager SM;
@@ -83,7 +81,7 @@ public class Player : MonoBehaviour
     public bool cargadoRojo;
     public bool cargadoAzul;
     public TiendaRap tiendaRap;
-
+    public SpawnerManager SpawnerManager;
 
     [Header("Coleccionables")]
     public int collectables = 1;
@@ -722,6 +720,12 @@ public class Player : MonoBehaviour
         if(collider.gameObject.CompareTag("Tienda"))
         {
             tiendaRap.FirstSelectOption();
+        }
+
+        if (collider.gameObject.CompareTag("Activador"))
+        {
+            SpawnerManager.waveActivator = true;
+            SpawnerManager.doorActivator = true;
         }
     }
 

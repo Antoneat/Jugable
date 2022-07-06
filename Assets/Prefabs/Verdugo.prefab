@@ -200,16 +200,20 @@ MonoBehaviour:
   SM: {fileID: 0}
   eP2: {fileID: 0}
   proyectileSpeed: 4
-  vida: 0
+  vida: 15
   dead: 0
   atkbasDMG: 0
   atkbasGO: {fileID: 0}
+  atkBTxt: {fileID: 0}
   golpeDMG: 0
   golpeGO: {fileID: 0}
+  golpeTxt: {fileID: 0}
   rafagaDMG: 0
   rafagaGO: {fileID: 0}
+  rafagaTxt: {fileID: 0}
   knockbackStrength: 0
   playerpos: {x: 0, y: 0, z: 0}
+  coPlay: 0
 --- !u!114 &8506037080635863092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,8 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbe56ed31b0d4c498798cc8e27de2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  agent: {fileID: 0}
+  agent: {fileID: 8230865892871844997}
   destPoint: 0
   goal: {fileID: 0}
   playerDistance: 0

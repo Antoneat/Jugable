@@ -392,9 +392,12 @@ MonoBehaviour:
   dead: 0
   ataqueNormalDMG: 1
   basicoGO: {fileID: 3749412668220788899}
+  atkBTxt: {fileID: 0}
   mordiscoDMG: 2
   mordiscoGO: {fileID: 3749412668544408187}
+  mordiscoTxt: {fileID: 0}
   knockbackStrength: 0
+  coPlay: 0
 --- !u!114 &3512289961150925359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbd61573ebf16443bc25a4073c7e84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
   agent: {fileID: 3749412667670454103}
   destPoint: 0
   goal: {fileID: 0}

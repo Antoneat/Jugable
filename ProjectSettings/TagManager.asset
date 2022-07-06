@@ -38,6 +38,7 @@ TagManager:
   - PortalC
   - PortalB
   - portalA
+  - Activador
   layers:
   - Default
   - TransparentFX

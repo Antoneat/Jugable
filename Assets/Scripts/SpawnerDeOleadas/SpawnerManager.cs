@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
+    public GameObject[] puertas;
     public GameObject[] spawnPoints;    // Puntos de spawn.
     public GameObject[] enemies;    // Enemigos que spawneara.
+    public GameObject activador;
     public int waveCount;
     public int wave;    // Oleada actual.
     public int enemyType;   // Tipo de enemigo 0=Buscador 1=Verdugo.
-    public bool spawning;   // Spawneando.
     public int enemiesSpawned;  // Cantidad de enemigos spawneados.
-    //public WaveManager gameManager;
+    public bool spawning;   // Spawneando.
+    public bool waveActivator;  // Active el spawning de las oleadas;
+    public bool doorActivator;  // Active el collider de las puertas;
 
     [Header("Enemies Stuff")]
-    //public Enemy enmy1;
-    //public Enemy2 enmy2;
     public int defeatedEnemies;
     public int enemiesCounterAnt;
     public int enemiesCounter;
@@ -26,50 +27,48 @@ public class SpawnerManager : MonoBehaviour
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-        waveCount = 4;
-        wave = 1;
+        waveCount = 3;
+        wave = 0;
         spawning = false;
+        waveActivator = false;
+        doorActivator = false;
         enemiesSpawned = 0;
-        //gameManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
-        //enmy1 = GameObject.FindGameObjectWithTag("Buscador").GetComponent<Enemy>();
-        //enmy2 = GameObject.FindGameObjectWithTag("Verdugo").GetComponent<Enemy2>();
         defeatedEnemies = 0;
     }
 
-
     void Update()
     {
-        if(spawning == false && enemiesSpawned == plyr.enemigosDerrotados)
+        if (spawning == false && enemiesSpawned == plyr.enemigosDerrotados && waveActivator == true && doorActivator == true)
         {
             StartCoroutine(SpawnWave(waveCount));
         }
 
-        /*if (enemies[enemyType].GetComponent<Enemy>().dead == true)
+        if (doorActivator == true)
         {
-            defeatedEnemies++;
+            puertas[0].SetActive(true);
+            puertas[1].SetActive(true);
         }
-
-        if (enemies[enemyType].GetComponent<Enemy2>().dead == true)
-        {
-            defeatedEnemies++;
-        }*/
     }
 
     IEnumerator SpawnWave(int waveC)
     {
         spawning = true;
-        // Mostrar en texto que ronda esta
+        doorActivator = true;
+
         yield return new WaitForSeconds(4f);
-        // Desactivar el texto
+
         for (int i = 0; i < waveC; i++)
         {
             SpawnEnemy(wave);
             yield return new WaitForSeconds(2f);
         }
-        wave += 1;
-        //waveCount += 1;
-        spawning = false;
 
+        wave += 1;
+        spawning = false;
+        if (wave == 3)
+        {
+            FinishFloorWave();
+        }
         yield break;
     }
 
@@ -84,5 +83,16 @@ public class SpawnerManager : MonoBehaviour
 
         Instantiate(enemies[enemyType], spawnPoints[spawnPos].transform.position, spawnPoints[spawnPos].transform.rotation);
         enemiesSpawned += 1;
+    }
+
+    public void FinishFloorWave()
+    {
+        enemiesSpawned = 0;
+        plyr.enemigosDerrotados = 0;
+        waveActivator = false;
+        doorActivator = false;
+        puertas[0].SetActive(false);
+        puertas[1].SetActive(false);
+        activador.SetActive(false);
     }
 }
