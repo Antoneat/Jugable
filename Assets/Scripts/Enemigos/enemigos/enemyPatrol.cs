@@ -73,7 +73,7 @@ public class enemyPatrol : MonoBehaviour
 		agent.SetDestination(goal.position);
 
 		//transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-
+		/*
 		if (agent.remainingDistance > agent.stoppingDistance)
         {
 			agent.isStopped = false;
@@ -84,7 +84,7 @@ public class enemyPatrol : MonoBehaviour
 			// no mas walkl 
 			agent.isStopped = true; 
         }
-
+		*/
 	}
 
 

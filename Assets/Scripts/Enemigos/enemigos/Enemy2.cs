@@ -11,7 +11,7 @@ public class Enemy2 : MonoBehaviour
     public StateManagerEnemies SME;
     public enemyPatrol2 eP2;
 
-    public float proyectileSpeed = 4;
+    public float proyectileSpeed = 8;
 
     [Header("Vida")]
     public float vida;
@@ -96,71 +96,111 @@ public class Enemy2 : MonoBehaviour
 
     IEnumerator AtaqueBasico()
     {
-        coPlay = true;
-        eP2.agent.isStopped = true;
-        yield return new WaitForSecondsRealtime(1.5f);
-        eP2.agent.isStopped = false;
-        atkbasGO.SetActive(true);
+        Debug.Log("ataque bas");
+        if (!atkbasGO.activeSelf)
+        {
+            coPlay = true;
+            eP2.agent.isStopped = true;
+            yield return new WaitForSecondsRealtime(1.5f);
 
-        //anim empieza
+            atkbasGO.transform.position = transform.position;
+            atkbasGO.transform.parent = null;
+            atkbasGO.SetActive(true);
 
-        float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
-       atkbasGO.transform.position = Vector3.MoveTowards(transform.position, playerpos, step);
-        yield return new WaitForSecondsRealtime(4f);
-        atkbasGO.SetActive(false);
+            //atkBTxt.SetActive(true); ANIMACION GO
+            float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
 
-        // anim termina
+            Vector3 playePos = playerpos;
+            Vector3 originPos = transform.position;
 
-        yield return new WaitForSecondsRealtime(1f);
-        coPlay = false;
-        yield break;
+            float timer = 4;
+            while (timer >= 0)
+            {
+                timer -= Time.deltaTime;
+                atkbasGO.transform.position = Vector3.MoveTowards(originPos, playePos, step);
+                yield return null;
+            }
+
+            eP2.agent.isStopped = false;
+            atkbasGO.SetActive(false);
+            atkbasGO.transform.parent = transform;
+            //atkBTxt.SetActive(true); FUNA LA ANIMACION
+            yield return new WaitForSecondsRealtime(1f);
+            coPlay = false;
+            yield break;
+        }
     }
 
-    IEnumerator GolpeAlPiso()
+        IEnumerator GolpeAlPiso()
     {
-        coPlay = true;
-        eP2.agent.isStopped = true;
-        //wea q lo sigue 
-        yield return new WaitForSecondsRealtime(3f);
-        //GameObject clone = Instantiate(golpeGO, playerpos, Quaternion.identity);
-        golpeGO.transform.position = playerpos;
-        golpeGO.SetActive(true);
 
-        //anim empieza
+        if (!golpeGO.activeSelf)
+        {
+            coPlay = true;
+            eP2.agent.isStopped = true;
+            yield return new WaitForSecondsRealtime(3f);
 
-        // SM.ps = PlayerState.Quemado;
-        eP2.agent.isStopped = false;
-        yield return new WaitForSecondsRealtime(1f);
-        golpeGO.SetActive(false);
+            golpeGO.transform.position = transform.position;
+            golpeGO.transform.parent = null;
+            golpeGO.SetActive(true);
 
-        // anim termina
+            golpeGO.transform.position = playerpos;
+           
 
-        yield return new WaitForSecondsRealtime(1f);
-        coPlay = false;
-        yield break;
+            //anim empieza
+
+            eP2.agent.isStopped = false;
+            yield return new WaitForSecondsRealtime(1f);
+            golpeGO.SetActive(false);
+            atkbasGO.transform.parent = transform;
+
+            // anim termina
+
+            yield return new WaitForSecondsRealtime(1f);
+            coPlay = false;
+            yield break;
+        }
     }
 
     IEnumerator Rafaga()
     {
-        coPlay = true;
-        eP2.agent.isStopped = true;
-        yield return new WaitForSecondsRealtime(1f);
-        rafagaGO.SetActive(true);
 
-        //anim empieza
+        if (!rafagaGO.activeSelf)
+        {
+            coPlay = true;
+            eP2.agent.isStopped = true;
+            yield return new WaitForSecondsRealtime(1f);
+          
+            rafagaGO.transform.position = transform.position;
+            rafagaGO.transform.parent = null;
+            rafagaGO.SetActive(true);
 
-        float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
-        rafagaGO.transform.position = Vector3.MoveTowards(transform.position, playerpos, step);
-        //SM.ps = PlayerState.Quemado;
-        eP2.agent.isStopped = false;
-        yield return new WaitForSecondsRealtime(2f);
-        rafagaGO.SetActive(false);
+            //anim empieza
 
-        //anim termina
+            float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
 
-        yield return new WaitForSecondsRealtime(1f);
-        coPlay = false;
-        yield break;
+            Vector3 playePos = playerpos;
+            Vector3 originPos = transform.position;
+
+            float timer = 2;
+
+            while (timer >= 0)
+            {
+                timer -= Time.deltaTime;
+                rafagaGO.transform.position = Vector3.MoveTowards(originPos, playePos, step);
+                yield return null;
+            }
+
+  
+            eP2.agent.isStopped = false;
+            rafagaGO.SetActive(false);
+            atkbasGO.transform.parent = transform;
+
+            //anim termina
+            yield return new WaitForSecondsRealtime(1f);
+            coPlay = false;
+            yield break;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

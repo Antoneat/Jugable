@@ -73,18 +73,17 @@ public class enemyPatrol2 : MonoBehaviour
 		agent.SetDestination(goal.position);
 
 		//transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+		/*
+				if (agent.remainingDistance > agent.stoppingDistance)
+				{
+					agent.isStopped = false;
 
-		if (agent.remainingDistance > agent.stoppingDistance)
-		{
-			agent.isStopped = false;
-			// anim walk walk fashion baby work it 
-		}
-		else if (agent.remainingDistance < agent.stoppingDistance)
-		{
-			agent.isStopped = true;
-			// no mas walkl 
-		}
-
+				}
+				else if (agent.remainingDistance < agent.stoppingDistance)
+				{
+					agent.isStopped = true;
+				}
+		*/
 	}
 
 
