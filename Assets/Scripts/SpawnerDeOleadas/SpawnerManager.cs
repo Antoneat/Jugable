@@ -47,6 +47,7 @@ public class SpawnerManager : MonoBehaviour
         {
             puertas[0].SetActive(true);
             puertas[1].SetActive(true);
+            puertas[2].SetActive(true);
         }
     }
 
@@ -93,6 +94,7 @@ public class SpawnerManager : MonoBehaviour
         doorActivator = false;
         puertas[0].SetActive(false);
         puertas[1].SetActive(false);
+        puertas[2].SetActive(false);
         activador.SetActive(false);
     }
 }

@@ -22953,6 +22953,14 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: enmy
+      value: 
+      objectReference: {fileID: 6673054284808124671, guid: 566fe075f6d505b42bf0bb97f4183af6, type: 3}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: enmy2
+      value: 
+      objectReference: {fileID: 979409370336354545, guid: 0325dde4bd38f7a41a9d577fc827af5f, type: 3}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
       propertyPath: atq1Sfx
       value: 
       objectReference: {fileID: 458870678}
@@ -22965,6 +22973,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1518783200}
     - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: dashIMG
+      value: 
+      objectReference: {fileID: 506676016}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
       propertyPath: dashSfx
       value: 
       objectReference: {fileID: 641011783}
@@ -22973,13 +22985,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1512889758}
     - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: collecTxt
+      value: 
+      objectReference: {fileID: 1897278526}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: bloqueoIMG
+      value: 
+      objectReference: {fileID: 1774636557}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
       propertyPath: bloqueoSfx
       value: 
       objectReference: {fileID: 2096641337}
     - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: collecTxtGO
+      value: 
+      objectReference: {fileID: 294876013}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
       propertyPath: "recibirDa\xF1o1"
       value: 
       objectReference: {fileID: 1250557545}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: SpawnerManager
+      value: 
+      objectReference: {fileID: 4529498336852277908, guid: 8e793f362c0ae9a41ae3128481b72810, type: 3}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: almasTextTotal
+      value: 
+      objectReference: {fileID: 734751814}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: attackChargIMG
+      value: 
+      objectReference: {fileID: 527248001}
+    - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
+      propertyPath: attackComboIMG
+      value: 
+      objectReference: {fileID: 2023402596}
     - target: {fileID: 8735978878242805657, guid: 1208240184ee1c440b8682e6b8e3b40e, type: 3}
       propertyPath: sfxDmgBloqueando
       value: 
