@@ -112,6 +112,7 @@ public class StateManager : MonoBehaviour
        {
            fireTicks++;
            Pl.actualvida -= dmgTick;  // Player recive damage
+           lifebar.SetVida(Pl.actualvida); //aaaaa
            yield return new WaitForSecondsRealtime(timeXTick);  // wait second
            yield return null;
        }
