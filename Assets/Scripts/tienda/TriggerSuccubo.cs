@@ -7,43 +7,69 @@ public class TriggerSuccubo : MonoBehaviour
 
     public GameObject Sucubo;
     public GameObject shopUI;
+
+    bool isAdentro;
+    bool bienAdentro;
+
     private void Start()
     {
         Sucubo.SetActive(false);
-       shopUI.SetActive(false);
+        shopUI.SetActive(false);
+        isAdentro = false;
+        bienAdentro = false;
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(isAdentro)
+            {
+                if(bienAdentro)
+                {
+                    salirTienda();
+                 //   isAdentro=false;
+                    bienAdentro = false;
+                }
+                else
+                {
+                    entrarTienda();
+                    Debug.Log("adentro");
+                    bienAdentro = true;
+                }   
+            }
+        }
+
+    } 
+
+
+    void entrarTienda()
+    {
+        shopUI.SetActive(true);
+    }
+    void salirTienda()
+    {
+        shopUI.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Sucubo.SetActive(true);
+
+            isAdentro = true;
+
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Sucubo.SetActive(false);
+
+            isAdentro = false;
+
         }
     }
 
-    public void SuccIn()
-    {
-        Sucubo.SetActive(true);
-        shopUI.SetActive(false);
-    }
-
-    public void SuccOut()
-    {
-            Sucubo.SetActive(false);
-            shopUI.SetActive(true);
-    }
-
-    public void Exit()
-    {
-        Sucubo.SetActive(false);
-        shopUI.SetActive(false);
-    }
 }

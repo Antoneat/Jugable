@@ -283,7 +283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plyr: {fileID: 0}
   SM: {fileID: 0}
-  SME: {fileID: -7081343751332437976}
   eP2: {fileID: 8506037080635863092}
   proyectileSpeed: 4
   vida: 15
@@ -316,9 +315,9 @@ MonoBehaviour:
   destPoint: 0
   goal: {fileID: 0}
   playerDistance: 0
-  awareAI: 0
-  atkRange: 0
-  ee2: {fileID: 0}
+  awareAI: 10
+  atkRange: 5
+  ee2: {fileID: 979409370336354545}
 --- !u!114 &-7081343751332437976
 MonoBehaviour:
   m_ObjectHideFlags: 0

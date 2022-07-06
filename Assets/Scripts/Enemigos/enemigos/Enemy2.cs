@@ -8,10 +8,9 @@ public class Enemy2 : MonoBehaviour
 
     public Player plyr;
     public StateManager SM;
-    public StateManagerEnemies SME;
     public enemyPatrol2 eP2;
 
-    public float proyectileSpeed = 8;
+    public float proyectileSpeed = 4;
 
     [Header("Vida")]
     public float vida;
@@ -42,16 +41,15 @@ public class Enemy2 : MonoBehaviour
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         SM = GameObject.FindGameObjectWithTag("Player").GetComponent<StateManager>();
-
         dead = false;
 
         atkbasGO.SetActive(false);
         golpeGO.SetActive(false);
         rafagaGO.SetActive(false);
 
-        //atkBTxt.SetActive(false);
-        //golpeTxt.SetActive(false);
-       // rafagaTxt.SetActive(false);
+    //    atkBTxt.SetActive(false);
+      //  golpeTxt.SetActive(false);
+        //rafagaTxt.SetActive(false);
 
         coPlay = false;
     }
@@ -97,24 +95,22 @@ public class Enemy2 : MonoBehaviour
     IEnumerator AtaqueBasico()
     {
         Debug.Log("ataque bas");
-        if (!atkbasGO.activeSelf)
+        if(!atkbasGO.activeSelf)
         {
             coPlay = true;
             eP2.agent.isStopped = true;
             yield return new WaitForSecondsRealtime(1.5f);
-
             atkbasGO.transform.position = transform.position;
             atkbasGO.transform.parent = null;
             atkbasGO.SetActive(true);
-
-            //atkBTxt.SetActive(true); ANIMACION GO
+            //atkBTxt.SetActive(true);
             float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
 
             Vector3 playePos = playerpos;
             Vector3 originPos = transform.position;
 
             float timer = 4;
-            while (timer >= 0)
+            while(timer>=0)
             {
                 timer -= Time.deltaTime;
                 atkbasGO.transform.position = Vector3.MoveTowards(originPos, playePos, step);
@@ -124,83 +120,51 @@ public class Enemy2 : MonoBehaviour
             eP2.agent.isStopped = false;
             atkbasGO.SetActive(false);
             atkbasGO.transform.parent = transform;
-            //atkBTxt.SetActive(true); FUNA LA ANIMACION
+           // atkBTxt.SetActive(false);
             yield return new WaitForSecondsRealtime(1f);
             coPlay = false;
             yield break;
         }
+   
     }
 
-        IEnumerator GolpeAlPiso()
+    IEnumerator GolpeAlPiso()
     {
-
-        if (!golpeGO.activeSelf)
-        {
-            coPlay = true;
-            eP2.agent.isStopped = true;
-            yield return new WaitForSecondsRealtime(3f);
-
-            golpeGO.transform.position = transform.position;
-            golpeGO.transform.parent = null;
-            golpeGO.SetActive(true);
-
-            golpeGO.transform.position = playerpos;
-           
-
-            //anim empieza
-
-            eP2.agent.isStopped = false;
-            yield return new WaitForSecondsRealtime(1f);
-            golpeGO.SetActive(false);
-            atkbasGO.transform.parent = transform;
-
-            // anim termina
-
-            yield return new WaitForSecondsRealtime(1f);
-            coPlay = false;
-            yield break;
-        }
+        coPlay = true;
+        eP2.agent.isStopped = true;
+        //wea q lo sigue 
+        yield return new WaitForSecondsRealtime(3f);
+        //GameObject clone = Instantiate(golpeGO, playerpos, Quaternion.identity);
+        golpeGO.transform.position = playerpos;
+        golpeGO.SetActive(true);
+       // golpeTxt.SetActive(true);
+        // SM.ps = PlayerState.Quemado;
+        eP2.agent.isStopped = false;
+        yield return new WaitForSecondsRealtime(1f);
+        golpeGO.SetActive(false);
+        //golpeTxt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
+        yield break;
     }
 
     IEnumerator Rafaga()
     {
-
-        if (!rafagaGO.activeSelf)
-        {
-            coPlay = true;
-            eP2.agent.isStopped = true;
-            yield return new WaitForSecondsRealtime(1f);
-          
-            rafagaGO.transform.position = transform.position;
-            rafagaGO.transform.parent = null;
-            rafagaGO.SetActive(true);
-
-            //anim empieza
-
-            float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
-
-            Vector3 playePos = playerpos;
-            Vector3 originPos = transform.position;
-
-            float timer = 2;
-
-            while (timer >= 0)
-            {
-                timer -= Time.deltaTime;
-                rafagaGO.transform.position = Vector3.MoveTowards(originPos, playePos, step);
-                yield return null;
-            }
-
-  
-            eP2.agent.isStopped = false;
-            rafagaGO.SetActive(false);
-            atkbasGO.transform.parent = transform;
-
-            //anim termina
-            yield return new WaitForSecondsRealtime(1f);
-            coPlay = false;
-            yield break;
-        }
+        coPlay = true;
+        eP2.agent.isStopped = true;
+        yield return new WaitForSecondsRealtime(1f);
+        rafagaGO.SetActive(true);
+        //rafagaTxt.SetActive(true);
+        float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
+        rafagaGO.transform.position = Vector3.MoveTowards(transform.position, playerpos, step);
+        //SM.ps = PlayerState.Quemado;
+        eP2.agent.isStopped = false;
+        yield return new WaitForSecondsRealtime(2f);
+        rafagaGO.SetActive(false);
+        //rafagaTxt.SetActive(false);
+        yield return new WaitForSecondsRealtime(1f);
+        coPlay = false;
+        yield break;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -226,19 +190,6 @@ public class Enemy2 : MonoBehaviour
 
         if (collider.gameObject.CompareTag("AtaqueTres")) vida -= plyr.AttackDmgTres; // Lo de arriba x3.
 
-        if (collider.gameObject.CompareTag("BasicoUpgraded")) vida -= 1;
-
-        if (collider.gameObject.CompareTag("AtaqueCargado"))
-        {
-            if (plyr.cargadoAzul == false)
-            {
-                vida -= plyr.AttackDmgCargado;
-            }
-            else if (plyr.cargadoAzul == true)
-            {
-                vida -= plyr.AttackDmgCargado;
-                SME.es = EnemyState.Quemado;
-            }
-        }
+        if (collider.gameObject.CompareTag("AtaqueCargado")) vida -= plyr.AttackDmgCargado; // Lo de arriba x4.
     }
 }

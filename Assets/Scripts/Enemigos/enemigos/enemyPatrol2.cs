@@ -39,24 +39,24 @@ public class enemyPatrol2 : MonoBehaviour
 			LookAtPlayer();
 			Debug.Log("Seen");
 			Chase();
-			////agent.isStopped = false;
+			//agent.isStopped = false;
 		}
 		else if (playerDistance > awareAI)
 		{
 			LookAtPlayer();
-			////agent.isStopped = true;
+		//	agent.isStopped = true;
 		}
 
 
 		if (playerDistance <= atkRange)
 		{
 			ee2.ChooseAtk2();
-			////agent.isStopped = false;
+			//agent.isStopped = false;
 		}
 		else if (playerDistance > atkRange)
 		{
 			LookAtPlayer();
-			////agent.isStopped = false;
+			//agent.isStopped = false;
 		}
 	}
 
@@ -73,17 +73,17 @@ public class enemyPatrol2 : MonoBehaviour
 		agent.SetDestination(goal.position);
 
 		//transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-		/*
-				if (agent.remainingDistance > agent.stoppingDistance)
-				{
-					agent.isStopped = false;
+/*
+		if (agent.remainingDistance > agent.stoppingDistance)
+		{
+			agent.isStopped = false;
 
-				}
-				else if (agent.remainingDistance < agent.stoppingDistance)
-				{
-					agent.isStopped = true;
-				}
-		*/
+		}
+		else if (agent.remainingDistance < agent.stoppingDistance)
+		{
+			agent.isStopped = true;
+		}
+*/
 	}
 
 

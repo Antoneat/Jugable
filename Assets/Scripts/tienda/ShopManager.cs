@@ -13,7 +13,8 @@ public class ShopManager : MonoBehaviour
     public Transform shopContent;
     public GameObject itemPrefab;
     public Player plyr;
-    
+
+   // public GameObject Pausa;
     private void Awake()
     {
         if(instance == null)
@@ -31,7 +32,9 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-      
+     
+        
+
         foreach (Upgrade upgrade in upgrades)
         {
             GameObject item = Instantiate(itemPrefab, shopContent);
@@ -71,20 +74,18 @@ public class ShopManager : MonoBehaviour
 
     void Update()
     {
-        Pausa();
+        //Pausa();
     }
 
-    void Pausa()
+    void PausaEnTienda()
     {
         if (!shopUI.activeInHierarchy || !succUI.activeInHierarchy)
         {
-
-            Time.timeScale = 1f;
-
+          //  Pausa.PauseUnPause();
         }
         else 
         {
-            Time.timeScale = 0f;
+          
         }
     }
 
