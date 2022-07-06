@@ -104,6 +104,8 @@ public class Enemy2 : MonoBehaviour
 
         //anim empieza
 
+        float step = proyectileSpeed * Time.deltaTime; // calculate distance to move
+       atkbasGO.transform.position = Vector3.MoveTowards(transform.position, playerpos, step);
         yield return new WaitForSecondsRealtime(4f);
         atkbasGO.SetActive(false);
 
