@@ -8,6 +8,7 @@ public class Enemy2 : MonoBehaviour
 
     public Player plyr;
     public StateManager SM;
+    public StateManagerEnemies SME;
     public enemyPatrol2 eP2;
 
     public float proyectileSpeed = 4;
@@ -40,7 +41,8 @@ public class Enemy2 : MonoBehaviour
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-       
+        SM = GameObject.FindGameObjectWithTag("Player").GetComponent<StateManager>();
+
         dead = false;
 
         atkbasGO.SetActive(false);
@@ -170,6 +172,19 @@ public class Enemy2 : MonoBehaviour
 
         if (collider.gameObject.CompareTag("AtaqueTres")) vida -= plyr.AttackDmgTres; // Lo de arriba x3.
 
-        if (collider.gameObject.CompareTag("AtaqueCargado")) vida -= plyr.AttackDmgCargado; // Lo de arriba x4.
+        if (collider.gameObject.CompareTag("BasicoUpgraded")) vida -= 1;
+
+        if (collider.gameObject.CompareTag("AtaqueCargado"))
+        {
+            if (plyr.cargadoAzul == false)
+            {
+                vida -= plyr.AttackDmgCargado;
+            }
+            else if (plyr.cargadoAzul == true)
+            {
+                vida -= plyr.AttackDmgCargado;
+                SME.es = EnemyState.Quemado;
+            }
+        }
     }
 }

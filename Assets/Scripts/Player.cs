@@ -44,10 +44,14 @@ public class Player : MonoBehaviour
     public bool attackCombo = false;
     public float attackCooldown = 0.25f;
     private float timePressed = 0.9f;
+    public GameObject basicInvoker;
+    public GameObject basicUpgraded;
+    public GameObject attackComboIMG;
 
     [Header("AtaqueCargado")]
     //[SerializeField] private float radio = 5f;
     public GameObject ataqueCargGO;
+    public ForAttackCharged ForAttackCharged;
     public int AttackDmgCargado = 5;
     public bool attackCharged = false;
     public GameObject attackChargIMG;
@@ -82,6 +86,7 @@ public class Player : MonoBehaviour
     public bool cargadoAzul;
     public TiendaRap tiendaRap;
     public SpawnerManager SpawnerManager;
+    public StateManagerEnemies SME;
 
     [Header("Coleccionables")]
     public int collectables = 1;
@@ -137,6 +142,12 @@ public class Player : MonoBehaviour
             lifeBar.SetVida(actualvida);
         }
 
+        if(actualvida <= 0)
+        {
+            // SceneManager.LoadScene(); FRANCISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 
+            // AGREGALE CANVA DE MUERTE.
+        }
+
         //invocacionesEnemigos();
         Blocking();
 
@@ -173,6 +184,7 @@ public class Player : MonoBehaviour
                 dashSfx.Play();
                 dash = true;
                 dashCoolCounter = dashCooldown;
+                dashIMG.SetActive(false);
                 StartCoroutine(Dash());
             }
         }
@@ -206,8 +218,17 @@ public class Player : MonoBehaviour
         {
             bloqueoCounter -= Time.deltaTime;
         }
+        if (bloqueoCounter <= 0)
+        {
+            bloqueoIMG.SetActive(true);
+        }else if (bloqueoCounter > 0)
+        {
+            bloqueoIMG.SetActive(false);
+        }
 
         attackCooldown -= Time.deltaTime;
+
+        if (attackCooldown <= 0) attackComboIMG.SetActive(true);
 
         if (Input.GetKey(KeyCode.J))
         {
@@ -438,6 +459,7 @@ public class Player : MonoBehaviour
             ataqueDosGO.SetActive(false);
             ataqueTresGO.SetActive(false);
             attackCooldown = 0.7f;
+            attackComboIMG.SetActive(false);
             StartCoroutine(Slowness());
         }
 
@@ -450,6 +472,7 @@ public class Player : MonoBehaviour
             ataqueDosGO.SetActive(true);
             ataqueTresGO.SetActive(false);
             attackCooldown = 0.25f;
+            attackComboIMG.SetActive(false);
             StartCoroutine(Slowness());
         }
 
@@ -460,6 +483,11 @@ public class Player : MonoBehaviour
             ataqueDosGO.SetActive(false);
             ataqueTresGO.SetActive(true);
             attackCooldown = 0.9f;
+            attackComboIMG.SetActive(false);
+            if (basicoMejorado == true)
+            {
+                Instantiate(basicUpgraded, basicInvoker.transform.position, transform.rotation);
+            }
             StartCoroutine(Slowness());
             StartCoroutine(RestartCombo());
         }
@@ -478,6 +506,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1.1f);
         numberOfClicks = 0;
+        attackComboIMG.SetActive(true);
         yield break;
     }
 
@@ -485,16 +514,65 @@ public class Player : MonoBehaviour
     {
         attackChargIMG.SetActive(false);
         //ANIMACION CARGA SALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
-        for (int i = 0; i < 2; i++)
+        if(cargadoAzul == false || cargadoRojo == false)
         {
-            ataqueCargGO.SetActive(true);
-            yield return new WaitForSecondsRealtime(1);
-            ataqueCargGO.SetActive(false);
+            for (int i = 0; i < 2; i++)
+            {
+                ataqueCargGO.SetActive(true);
+                yield return new WaitForSecondsRealtime(1);
+                ataqueCargGO.SetActive(false);
+            }
+        }
+        
+        if (cargadoAzul == true && cargadoRojo == false)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                ataqueCargGO.SetActive(true);
+                yield return new WaitForSecondsRealtime(1);
+                ataqueCargGO.SetActive(false);
+                SME.es = EnemyState.Quemado;
+            }
+        }
+        
+        if (cargadoAzul == false && cargadoRojo == true)
+        {
+            int a;
+            for (a = 0; a < 2; a++)
+            {
+                ataqueCargGO.SetActive(true);
+                yield return new WaitForSecondsRealtime(1);
+                ataqueCargGO.SetActive(false);
+                if (a == 1)
+                {
+                    BuffForCharged(true);
+                    yield return new WaitForSecondsRealtime(5f);
+                    BuffForCharged(false);
+                }
+            }
         }
         attackCharged = false;
         speed = 400;
         attackChargIMG.SetActive(true);
         yield break;
+    }
+
+    public void BuffForCharged(bool done)
+    {
+        if(done == false)
+        {
+            speed += speed * 0.5f;
+            AttackDmgUno = 1.5f;
+            AttackDmgDos = 1.5f;
+            AttackDmgTres = 2.25f;
+        }
+        else if (done == true)
+        {
+            speed = 400;
+            AttackDmgUno = 1;
+            AttackDmgDos = 1;
+            AttackDmgTres = 1.5f;
+        }
     }
 
     private void Blocking()
@@ -504,19 +582,17 @@ public class Player : MonoBehaviour
             bloqueoSfx.Play();
             blck = true;
             speed = 0;
-            bloqueoIMG.SetActive(false);
             Debug.Log("Bloqueando1");
             //animacion de bloqueoSALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
         }
-        if (bloqueoDuracion <= 0 || Input.GetKeyUp(KeyCode.K) || cargasDeExplosion == 5)
+        if (bloqueoDuracion <= 0 || Input.GetKeyUp(KeyCode.K) && blck == true || cargasDeExplosion == 5)
         {
             blck = false;
             Debug.Log("Suelte de tecla2");
             // animacion de explosionSALDKJASKLFJASLKDFJCVKLASNVCKJSDJKLFASJKDSJKCHSDKNFCHKSDLHFJSDKHFDKSJHFSKDJHFNKS,DJHFJKSHFJKLSDHFJKLSHFKSHFKSDHFKJSDHFKJSDHKFJSDHKJHDS
             StartCoroutine(DevolverDmg());
-            bloqueoCounter = bloqueoCooldown;
+            bloqueoDuracion = bloqueoMaxDuracion;
             speed = 400;
-            bloqueoIMG.SetActive(true);
         }
     }
 
@@ -529,10 +605,11 @@ public class Player : MonoBehaviour
             enemyInRange.GetComponent<Enemy2>().vida -= cargasDeExplosion * 0.15f;
             Debug.Log("Devolviendo dmg a enemigos3");
         }
-        bloqueoDuracion = bloqueoMaxDuracion;
+        bloqueoCounter = bloqueoCooldown;
         cargasDeExplosion = 0;
         yield break;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 3f);
@@ -726,6 +803,11 @@ public class Player : MonoBehaviour
         {
             SpawnerManager.waveActivator = true;
             SpawnerManager.doorActivator = true;
+        }
+
+        if (collider.gameObject.CompareTag("FinDeNivel"))
+        {
+            SceneManager.LoadScene("Lev_Nivel2");
         }
     }
 

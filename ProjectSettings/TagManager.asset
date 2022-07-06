@@ -39,6 +39,8 @@ TagManager:
   - PortalB
   - portalA
   - Activador
+  - FinDeNivel
+  - BasicoUpgraded
   layers:
   - Default
   - TransparentFX

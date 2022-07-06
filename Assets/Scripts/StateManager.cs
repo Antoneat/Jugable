@@ -36,8 +36,8 @@ public class StateManager : MonoBehaviour
         sangrado = Sangrando();
         stuneado= Stuneado();
 
-       ps = PlayerState.Normal;
-       Pl=GetComponent<Player>();   
+        ps = PlayerState.Normal;
+        Pl = GetComponent<Player>();   
     }
 
 
@@ -49,10 +49,10 @@ public class StateManager : MonoBehaviour
 
     IEnumerator Normal()
     {
-       normalrunning = true;
-       yield return new WaitForSecondsRealtime(0.1f);
-       normalrunning = false;
-       yield break;
+        normalrunning = true;
+        yield return new WaitForSecondsRealtime(0.1f);
+        normalrunning = false;
+        yield break;
     }
 
     void Stados()
@@ -106,22 +106,22 @@ public class StateManager : MonoBehaviour
         timeXTick = 1;
         totalTicks = 3;
 
-       int totalTicksTemp = totalTicks;
+        int totalTicksTemp = totalTicks;
 
-       while (fireTicks < totalTicksTemp)
-       {
-           fireTicks++;
-           Pl.actualvida -= dmgTick;  // Player recive damage
-           lifebar.SetVida(Pl.actualvida); //aaaaa
-           yield return new WaitForSecondsRealtime(timeXTick);  // wait second
-           yield return null;
-       }
+        while (fireTicks < totalTicksTemp)
+        {
+            fireTicks++;
+            Pl.actualvida -= dmgTick;  // Player recive damage
+            lifebar.SetVida(Pl.actualvida); //aaaaa
+            yield return new WaitForSecondsRealtime(timeXTick);  // wait second
+            yield return null;
+        }
 
-       yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         fireTicks = 0;
-       ps = PlayerState.Normal;
-       speedless = false;
-       onFirerunning = false;
+        ps = PlayerState.Normal;
+        speedless = false;
+        onFirerunning = false;
         yield return null;
     }
 
@@ -138,6 +138,7 @@ public class StateManager : MonoBehaviour
         {
             bleedTicks++;
             Pl.actualvida -= dmgTick;  // Player recive damage
+            lifebar.SetVida(Pl.actualvida);
             yield return new WaitForSecondsRealtime(timeXTick);  // wait second
           
             yield return null;

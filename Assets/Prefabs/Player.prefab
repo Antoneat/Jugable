@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1590184321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1590184322}
+  m_Layer: 13
+  m_Name: AttackInvoker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1590184322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590184321}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9999991, y: 0, z: 1.2500002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1741655993864470572}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1741655993657793224
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +154,7 @@ Transform:
   - {fileID: 1741655994422803278}
   - {fileID: 1741655994526252855}
   - {fileID: 1741655993657793231}
+  - {fileID: 1590184322}
   m_Father: {fileID: 8735978878242805606}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -19686,7 +19718,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8735978878242805603}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16, y: 0.754, z: -24.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19735,7 +19767,7 @@ MonoBehaviour:
   suelo:
     serializedVersion: 2
     m_Bits: 64
-  actualvida: 0
+  actualvida: 25
   lifeBar: {fileID: 0}
   dash: 0
   speedDash: 100
@@ -19753,7 +19785,11 @@ MonoBehaviour:
   ataqueTresGO: {fileID: 1741655993657793224}
   attackCombo: 0
   attackCooldown: 0.9
+  basicInvoker: {fileID: 1590184321}
+  basicUpgraded: {fileID: 5063236808449660995, guid: dbcf4d383f120df4695a402bed1111f9, type: 3}
+  attackComboIMG: {fileID: 0}
   ataqueCargGO: {fileID: 1741655995641904969}
+  ForAttackCharged: {fileID: 0}
   AttackDmgCargado: 2
   attackCharged: 0
   attackChargIMG: {fileID: 0}
@@ -19781,6 +19817,8 @@ MonoBehaviour:
   cargadoRojo: 0
   cargadoAzul: 0
   tiendaRap: {fileID: 0}
+  SpawnerManager: {fileID: 0}
+  SME: {fileID: 0}
   collectables: 1
   counterCollectables: 0
   collecTxt: {fileID: 0}

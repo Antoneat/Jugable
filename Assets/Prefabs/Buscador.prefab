@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 3749412667670454103}
   - component: {fileID: 6673054284808124671}
   - component: {fileID: 3512289961150925359}
+  - component: {fileID: -7902112140783596697}
   m_Layer: 6
   m_Name: Buscador
   m_TagString: Enemigo
@@ -387,6 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plyr: {fileID: 0}
   SM: {fileID: 0}
+  SME: {fileID: -7902112140783596697}
   eP: {fileID: 3512289961150925359}
   vida: 10
   dead: 0
@@ -412,11 +414,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3749412667670454103}
   destPoint: 0
-  goal: {fileID: 0}
+  goal: {fileID: 3749412667670454105}
   playerDistance: 0
   awareAI: 15
   atkRange: 12
   ee: {fileID: 6673054284808124671}
+--- !u!114 &-7902112140783596697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749412667670454107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9322e4ceb793ee2498003ba7b538ce3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  es: 0
+  dmgTick: 0
+  timeXTick: 0
+  totalTicks: 0
+  fireTicks: 0
 --- !u!1 &3749412668220788899
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public Player plyr;
     public StateManager SM;
+    public StateManagerEnemies SME;
     public enemyPatrol eP;
 
     [Header("Vida")]
@@ -28,11 +29,11 @@ public class Enemy : MonoBehaviour
 
     public bool coPlay; 
 
-
-
     void Start()
     {
         plyr = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        SM = GameObject.FindGameObjectWithTag("Player").GetComponent<StateManager>();
+        
         //ObjetoASeguir = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         dead = false;
         basicoGO.SetActive(false);
@@ -75,8 +76,6 @@ public class Enemy : MonoBehaviour
         }
         
     }
-
-
 
     IEnumerator AtaqueBasico()
     {
@@ -134,11 +133,19 @@ public class Enemy : MonoBehaviour
 
         if (collider.gameObject.CompareTag("AtaqueTres")) vida -= plyr.AttackDmgTres; // Lo de arriba x3.
 
-        if (collider.gameObject.CompareTag("AtaqueCargado")) vida -= plyr.AttackDmgCargado; // Lo de arriba x4.
-    }
+        if (collider.gameObject.CompareTag("BasicoUpgraded")) vida -= 1;
 
-  /*  public void NumAlea()
-    {
-        int numalea = Random.Range(1,2);
-    }/*/
+        if (collider.gameObject.CompareTag("AtaqueCargado"))
+        {
+            if (plyr.cargadoAzul == false)
+            {
+                vida -= plyr.AttackDmgCargado;
+            }
+            else if (plyr.cargadoAzul == true)
+            {
+                vida -= plyr.AttackDmgCargado;
+                SME.es = EnemyState.Quemado;
+            }
+        }
+    }
 }
