@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
     public bool basicoMejorado;
     public bool cargadoRojo;
     public bool cargadoAzul;
-    public TiendaRap tiendaRap;
     public SpawnerManager SpawnerManager;
     public StateManagerEnemies SME;
 
@@ -792,11 +791,6 @@ public class Player : MonoBehaviour
         if (collider.gameObject.CompareTag("Escalera"))
         {
             closeToStair = true;
-        }
-
-        if(collider.gameObject.CompareTag("Tienda"))
-        {
-            tiendaRap.FirstSelectOption();
         }
 
         if (collider.gameObject.CompareTag("Activador"))
