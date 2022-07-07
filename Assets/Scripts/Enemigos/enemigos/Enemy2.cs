@@ -172,7 +172,7 @@ public class Enemy2 : MonoBehaviour
         if (collision.gameObject.CompareTag("FueraDelMundo")) Destroy(gameObject); // Si toca los colliders de FueraDelMundo, se destruye.
     }
 
-    private void OnTriggerEnter(Collider collider)
+    public void OnTriggerEnter(Collider collider)
     {
         Rigidbody rb = collider.GetComponent<Rigidbody>();
 

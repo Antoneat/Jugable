@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2012322717630002370}
   - component: {fileID: 5010681286782005905}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Render
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8230865892233089721}
   - component: {fileID: 8230865892233089718}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: GolpeEnemy2
   m_TagString: Golpe2
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8230865892773146033}
   - component: {fileID: 8453241995338068953}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: AtaqueNormalEnemy2
   m_TagString: AtkBasicoE2
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 979409370336354545}
   - component: {fileID: 8506037080635863092}
   - component: {fileID: -7081343751332437976}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: Verdugo
   m_TagString: Enemigo
   m_Icon: {fileID: 0}
@@ -287,13 +287,13 @@ MonoBehaviour:
   proyectileSpeed: 4
   vida: 15
   dead: 0
-  atkbasDMG: 0
+  atkbasDMG: 1
   atkbasGO: {fileID: 8230865892773146032}
   atkBTxt: {fileID: 0}
-  golpeDMG: 0
+  golpeDMG: 2
   golpeGO: {fileID: 8230865892233089720}
   golpeTxt: {fileID: 0}
-  rafagaDMG: 0
+  rafagaDMG: 1
   rafagaGO: {fileID: 8230865893100228208}
   rafagaTxt: {fileID: 0}
   knockbackStrength: 0
@@ -345,7 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8230865893100228206}
   - component: {fileID: 4960385004530042421}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: RafagaEnemy2
   m_TagString: Rafaga2
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 8230865893469611092}
   - component: {fileID: 8230865893469611095}
   - component: {fileID: 8230865893469611093}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: NombreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 8230865893946667094}
   - component: {fileID: 8230865893946667095}
   - component: {fileID: 8230865893946667092}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Render
   m_TagString: Untagged
   m_Icon: {fileID: 0}

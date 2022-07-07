@@ -80,6 +80,7 @@ public class SpawnerManager : MonoBehaviour
         if (wave >= 1)
         {
             enemyType = Random.Range(0, 2);
+            //enemyType = 0;
         }
 
         Instantiate(enemies[enemyType], spawnPoints[spawnPos].transform.position, spawnPoints[spawnPos].transform.rotation);
